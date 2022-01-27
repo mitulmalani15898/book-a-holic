@@ -9,4 +9,4 @@ This is the group project repository for the course CSCI 5709 - Advanced Topics 
 * *Main Repository*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/>
 
 ## Authors
-
+* [Yashvi Gulati (B00900339)](mailto:ys849413@dal.ca) - *(Maintainer)*
