@@ -11,3 +11,4 @@ This is the group project repository for the course CSCI 5709 - Advanced Topics 
 ## Authors
 * [Yashvi Gulati (B00900339)](mailto:ys849413@dal.ca) - *(Maintainer)*
 * [Abhinav Rawat (B00895691)](mailto:abhi@dal.ca) - *(Maintainer)*
+* [Mitul Pravinbhai Malani (B00869519)](mailto:mt215690@dal.ca) - *(Maintainer)*
