@@ -10,7 +10,7 @@ This is the group project repository for the course CSCI 5709 - Advanced Topics 
 * *Yashvi Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_yashvi>
 * *Mitul Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_mitul>
 * *Jainam Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_jainam/>
-* *Prit Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_prit>
+* *Prit Branch URL*: <https://git.cs.dal.ca/ygulati/Group3_CSCI5709/-/tree/feature_prit>
 * *Ninad Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_ninad>
 
 
