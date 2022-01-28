@@ -11,6 +11,7 @@ This is the group project repository for the course CSCI 5709 - Advanced Topics 
 * *Mitul Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_mitul>
 * *Jainam Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_jainam/>
 * *Prit Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_prit>
+* *Ninad Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_ninad>
 
 
 ## Authors
@@ -19,3 +20,4 @@ This is the group project repository for the course CSCI 5709 - Advanced Topics 
 * [Prit Thakkar (B00890731)](mailto:Prit.Thakkar@dal.ca) - *(Maintainer)*
 * [Mitul Pravinbhai Malani (B00869519)](mailto:mt215690@dal.ca) - *(Maintainer)*
 * [Jainam Rakeshkumar Shah (B00883898)](mailto:jainam@dal.ca) - *(Maintainer)*
+* [Ninad Nitin Shukla (B00863694)](mailto:nn320259@dal.ca) - *(Maintainer)*
