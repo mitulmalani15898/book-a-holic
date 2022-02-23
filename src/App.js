@@ -10,9 +10,9 @@ const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <NavbarComponent /> */}
+        <NavbarComponent />
         <Routes>
-          <Route path="/" element={<h2>Welcome to Book-a-holic!</h2>} />
+          <Route path="/" element={<Books />} />
           <Route path="/books" element={<Books />} />
           <Route path="/orders" element={<Books />} />
           <Route path="/profile" element={<Books />} />
