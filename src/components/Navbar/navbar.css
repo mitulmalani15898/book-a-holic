@@ -1,0 +1,25 @@
+.nav-container {
+  display: flex;
+}
+
+.navbar {
+  background-color: #0166b2 !important;
+  padding: 0 !important;
+  height: 50px !important;
+}
+
+.logout-icon {
+  margin-right: 6px;
+}
+
+.nav-link {
+  color: #fff !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.nav-link:active,
+.nav-link:hover,
+.active-nav-link {
+  text-decoration: underline !important;
+}
