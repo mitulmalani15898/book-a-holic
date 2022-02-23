@@ -1,0 +1,57 @@
+.books-header {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+}
+
+.books-title {
+  color: #0166B2;
+  font-family: IbmPlex Bold;
+  margin: 10px 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-width: 400px;
+  font-family: IbmPlex;
+}
+
+.search-bar:hover .search-icon {
+  transform: scale(1.2);
+}
+
+.search-input:hover,
+.search-input:focus {
+  border-color: #0166B2 !important;
+  box-shadow: 0 0 0 0.25rem #0166B240 !important;
+}
+
+.search-input {
+  border-radius: 30px !important;
+  background-color: #FFF !important;
+  box-shadow: none !important;
+  padding: 10px 20px !important;
+  caret-color: #0166B2 !important;
+}
+
+.search-icon-wrapper {
+  position: absolute;
+  width: 40px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .books-header {
+    flex-direction: column;
+  }
+  .search-bar {
+    width: 100%;
+    min-width: unset;
+  }
+}

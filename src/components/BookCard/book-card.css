@@ -1,0 +1,124 @@
+.book-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.book-image-wrapper:hover .book-image {
+  transform: scale(1.04);
+  transition: transform 200ms ease-in, box-shadow 200ms ease-in;
+}
+
+.book-image-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  max-height: 250px;
+  height: 250px;
+}
+
+.book-image {
+  border-radius: 3px;
+  max-width: none;
+  width: 100%;
+  box-shadow: 0px 6px 12px rgb(0 0 0 / 30%);
+}
+
+.book-title {
+  height: 53px;
+  font-family: IbmPlex Medium;
+  font-size: 16px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 10px 0 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+}
+
+.book-author {
+  height: 42px;
+  font-family: IbmPlex Light;
+  font-size: 14px;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+.book-price,
+.actual-book-price,
+.free-book-tag {
+  font-family: IBMPlex Medium;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
+.book-price {
+  color: #db1818;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+
+.free-book-tag {
+  color: #db1818;
+  line-height: 1.8;
+  font-weight: 800;
+}
+
+.add-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 6px 0 4px;
+  margin-top: 15px;
+  font-family: IBMPlex Medium;
+  font-weight: 400;
+  border-radius: 50px;
+  box-shadow: none !important;
+  border: 1px solid #fff !important;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #0166B2;
+}
+
+.add-cart-button:hover {
+  background-color: #fff;
+  color: #0166B2;
+  border: 1px solid #0166B2 !important;
+}
+
+.add-cart-icon {
+  margin-right: 5px;
+  margin-bottom: 4px;
+}
+
+.add-cart-button:hover #Add-Icon {
+  color: #0166B2;
+}
+
+@media only screen and (max-width: 576px) {
+  .book-image {
+    height: 100%;
+  }
+  .book-title {
+    height: 33px;
+    -webkit-line-clamp: 2;
+  }
+
+  .book-author {
+    height: 22px;
+    -webkit-line-clamp: 1;
+  }
+}
