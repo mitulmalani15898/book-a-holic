@@ -1,4 +1,4 @@
-# Tutorial 2 : Group 3
+# Project: Group 3
 
 This is the group project repository for the course CSCI 5709 - Advanced Topics in Web Development instructed by Professor Maria Gabriella Mosquera.
 
