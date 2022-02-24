@@ -3,7 +3,7 @@
 This is the group project repository for the course CSCI 5709 - Advanced Topics in Web Development instructed by Professor Maria Gabriella Mosquera.
 
 * *Date Created*: 27 Jan 2022
-* *Last Modification Date*: 28 Jan 2022
+* *Last Modification Date*: 24 Feb 2022
 
 ## URLs
 * *Main Repository*: <https://git.cs.dal.ca/ygulati/group3_csci5709>
