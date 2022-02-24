@@ -82,7 +82,7 @@ const CartComponent = () => {
             <div>3 Books</div>
             <div>$53.97</div>
           </div>
-          <div>
+          <div className="d-flex flex-column">
             <Form.Control type="text" placeholder="Enter promo code" />
             <button className="apply-promo-button">Apply</button>
             <div className="divider" />
