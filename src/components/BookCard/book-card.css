@@ -1,6 +1,7 @@
 .book-card-wrapper {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .book-image-wrapper {
@@ -43,6 +44,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   -webkit-line-clamp: 3;
+  text-align: center;
 }
 
 .book-author {
