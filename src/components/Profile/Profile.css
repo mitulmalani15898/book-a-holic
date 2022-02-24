@@ -1,9 +1,11 @@
-body {
-  background-color: #f2f4f7;
+.profile-container {
+  height: calc(100vh - 50px);
 }
+
 .main-container {
   background-color: white;
   height: 600px;
+  max-width: 100%;
   width: 850px;
   margin: 4em auto 3em auto;
   border-radius: 1.7em;
