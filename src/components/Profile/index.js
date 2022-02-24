@@ -110,7 +110,7 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div className="profile-container">
       <ModalComponent
         show={isModalVisible}
         onClose={() => {
