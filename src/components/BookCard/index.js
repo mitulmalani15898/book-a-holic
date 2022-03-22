@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import AddToCart from "../../static/images/AddCartIcon";
 
@@ -19,15 +20,18 @@ function BookCard({ book, setIsAdded }) {
     setIsHover(false);
   };
 
-  const { bookName, authorName, price, actualPrice, isFree, coverImage } = book;
+  const { id, bookName, authorName, price, actualPrice, isFree, coverImage } =
+    book;
 
   return (
     <div className="book-card-wrapper">
-      <div className="book-image-wrapper">
-        <div className="book-image-cover">
-          <img src={coverImage} alt="book-cover" className="book-image" />
+      <Link to={`/book/${id}`}>
+        <div className="book-image-wrapper">
+          <div className="book-image-cover">
+            <img src={coverImage} alt="book-cover" className="book-image" />
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="book-title">{bookName}</div>
       <div className="book-author">{authorName}</div>
       {isFree ? (
