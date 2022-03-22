@@ -19,13 +19,13 @@ import "./navbar.css";
 const NavbarComponent = () => {
   return (
     <Navbar expand="lg">
-      <Container className="nav-container">
+      <Container>
         <Navbar.Brand>
           <img alt="logo" src={Logo} width="200" height="50" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav>
+          <Nav className="main-navbar">
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -105,7 +105,7 @@ const NavbarComponent = () => {
               Cart
             </NavLink>
           </Nav>
-          <Nav className="">
+          <Nav>
             <Nav.Link
               to="/"
               className={({ isActive }) =>
