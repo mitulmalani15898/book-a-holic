@@ -1,6 +1,4 @@
-import React from "react";
-
-function AddCartIcon(props) {
+const AddCartIcon = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -23,6 +21,6 @@ function AddCartIcon(props) {
       </g>
     </svg>
   );
-}
+};
 
 export default AddCartIcon;
