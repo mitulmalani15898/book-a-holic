@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { pdfjs, Document, Page } from "react-pdf";
 
@@ -12,10 +12,6 @@ pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 const BookPreview = ({ show, handleClose }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-
-  useEffect(() => {
-    return setPageNumber(1);
-  }, []);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -37,9 +33,6 @@ const BookPreview = ({ show, handleClose }) => {
       <Modal.Body>
         <Document file={Pdf} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
-          {/* {Array.from({ length: numPages }, (_, i) => i + 1).map((page) => (
-            <Page pageNumber={page} />
-          ))} */}
         </Document>
       </Modal.Body>
       <Modal.Footer>
