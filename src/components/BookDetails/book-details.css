@@ -8,7 +8,7 @@
 }
 
 .image-block {
-  width: 40%;
+  width: 30%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -41,17 +41,23 @@
   font-size: 16px;
 }
 
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
 .cart-button {
   width: max-content;
   padding: 6px 40px;
   margin-top: 0;
 }
 
-.details-button-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 15px;
+.preview-button {
+  width: max-content;
+  padding: 6px 40px;
+  margin-top: 0;
+  margin-right: 10px;
 }
 
 .book-detail-description {
@@ -60,8 +66,8 @@
   margin-bottom: 15px;
 }
 
-@media only screen and (max-width: 992px) {
-  .details-button-wrapper {
+@media only screen and (max-width: 768px) {
+  .button-wrapper {
     flex-direction: column;
     align-items: flex-start;
   }
