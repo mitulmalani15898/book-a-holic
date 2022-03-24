@@ -34,28 +34,28 @@
 }
 
 .book-title {
-  height: 53px;
+  height: 36px;
   font-family: IbmPlex Medium;
   font-size: 16px;
   line-height: 1.1;
   text-transform: uppercase;
-  margin: 10px 0 0;
+  margin: 12px 0 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   text-align: center;
 }
 
 .book-author {
-  height: 42px;
+  height: 22px;
   font-family: IbmPlex Light;
   font-size: 14px;
   margin-bottom: 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
 }
 
 .book-price,
@@ -92,13 +92,13 @@
   border: 1px solid #fff !important;
   text-transform: uppercase;
   color: #fff;
-  background-color: #0166B2;
+  background-color: #0166b2;
 }
 
 .add-cart-button:hover {
   background-color: #fff;
-  color: #0166B2;
-  border: 1px solid #0166B2 !important;
+  color: #0166b2;
+  border: 1px solid #0166b2 !important;
 }
 
 .add-cart-icon {
@@ -107,7 +107,7 @@
 }
 
 .add-cart-button:hover #Add-Icon {
-  color: #0166B2;
+  color: #0166b2;
 }
 
 @media only screen and (max-width: 576px) {
@@ -115,12 +115,9 @@
     height: 100%;
   }
   .book-title {
-    height: 33px;
-    -webkit-line-clamp: 2;
+    height: auto;
   }
-
   .book-author {
     height: 22px;
-    -webkit-line-clamp: 1;
   }
 }

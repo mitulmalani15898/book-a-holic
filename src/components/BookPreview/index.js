@@ -2,19 +2,18 @@ import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { pdfjs, Document, Page } from "react-pdf";
 
+import { BASE_URL } from "../../utils/constants";
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "./book-preview.css";
 
-import Pdf from "./CSCI4177_5709-A3_Requirements.pdf";
-
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 
-const BookPreview = ({ show, handleClose }) => {
+const BookPreview = ({ show, handleClose, bookPdf, preview }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
   const onDocumentLoadSuccess = ({ numPages }) => {
-    setNumPages(numPages);
+    setNumPages(preview ? 10 : numPages);
   };
 
   const handlePreviousClick = () => {
@@ -31,7 +30,10 @@ const BookPreview = ({ show, handleClose }) => {
         Page {pageNumber} of {numPages}
       </Modal.Header>
       <Modal.Body>
-        <Document file={Pdf} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          file={`${BASE_URL + bookPdf}`}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
           <Page pageNumber={pageNumber} />
         </Document>
       </Modal.Body>

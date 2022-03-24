@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-import AddToCart from "../../static/images/AddCartIcon";
+import AddToCart from "../../static/images/icons/AddCartIcon";
+import { BASE_URL } from "../../utils/constants";
 
 import "./book-card.css";
 
@@ -20,26 +21,29 @@ function BookCard({ book, setIsAdded }) {
     setIsHover(false);
   };
 
-  const { id, bookName, authorName, price, actualPrice, isFree, coverImage } =
-    book;
+  const { _id, title, author, price, actualPrice, imageUrl } = book;
 
   return (
     <div className="book-card-wrapper">
-      <Link to={`/book/${id}`}>
+      <Link to={`/book/${_id}`}>
         <div className="book-image-wrapper">
           <div className="book-image-cover">
-            <img src={coverImage} alt="book-cover" className="book-image" />
+            <img
+              src={`${BASE_URL + imageUrl}`}
+              alt="book-cover"
+              className="book-image"
+            />
           </div>
         </div>
       </Link>
-      <div className="book-title">{bookName}</div>
-      <div className="book-author">{authorName}</div>
-      {isFree ? (
+      <div className="book-title">{title}</div>
+      <div className="book-author">{author}</div>
+      {price === 0 ? (
         <div className="free-book-tag">FREE</div>
       ) : (
         <div>
-          <span className="actual-book-price">{`$${actualPrice}`}</span>
-          <span className="book-price">{`$${price}`}</span>
+          <span className="actual-book-price">{`$${price}`}</span>
+          <span className="book-price">{`$${actualPrice}`}</span>
         </div>
       )}
 

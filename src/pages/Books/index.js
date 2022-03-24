@@ -6,11 +6,9 @@ import BooksList from "../../components/BooksList";
 import BooksFilter from "../../components/BooksFilter";
 
 const Books = () => {
-  const [search, setSearch] = useState("");
-
   return (
-    <Container>
-      <BooksHeader search={search} setSearch={setSearch} />
+    <Container className="books-container">
+      <BooksHeader />
       <BooksFilter />
       <BooksList />
     </Container>
