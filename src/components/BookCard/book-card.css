@@ -110,6 +110,16 @@
   color: #0166b2;
 }
 
+.remove-cart-button {
+  background-color: #db1818;
+}
+
+.remove-cart-button:hover {
+  background-color: #fff;
+  color: #db1818;
+  border: 1px solid #db1818 !important;
+}
+
 @media only screen and (max-width: 576px) {
   .book-image {
     height: 100%;

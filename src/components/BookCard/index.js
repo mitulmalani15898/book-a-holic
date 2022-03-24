@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { BooksContext } from "../../Providers/BooksProvider";
 
 import AddToCart from "../../static/images/icons/AddCartIcon";
 import { BASE_URL } from "../../utils/constants";
 
 import "./book-card.css";
 
-function BookCard({ book, setIsAdded }) {
+function BookCard({ book, isIncludedInCart }) {
   const [isHover, setIsHover] = useState(false);
+  const { setCart } = useContext(BooksContext);
 
-  const handleAddToCart = () => {
-    setIsAdded(true);
+  const handleAddToCart = (book) => () => {
+    setCart((prev) => [...prev, book]);
+  };
+
+  const handleRemoveFromCart = (book) => () => {
+    setCart((prev) => prev.filter((b) => b._id !== book._id));
   };
 
   const handleMouseEnter = () => {
@@ -47,18 +53,27 @@ function BookCard({ book, setIsAdded }) {
         </div>
       )}
 
-      <button
-        className="add-cart-button"
-        onClick={handleAddToCart}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <AddToCart
-          className="add-cart-icon"
-          color={isHover ? "#0166B2" : "#FFF"}
-        />
-        Add To Cart
-      </button>
+      {isIncludedInCart ? (
+        <button
+          className="add-cart-button remove-cart-button"
+          onClick={handleRemoveFromCart(book)}
+        >
+          Remove
+        </button>
+      ) : (
+        <button
+          className="add-cart-button"
+          onClick={handleAddToCart(book)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <AddToCart
+            className="add-cart-icon"
+            color={isHover ? "#0166B2" : "#FFF"}
+          />
+          Add To Cart
+        </button>
+      )}
     </div>
   );
 }

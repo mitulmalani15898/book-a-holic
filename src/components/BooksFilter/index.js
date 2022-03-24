@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { BooksContext } from "../../Providers/BooksProvider";
 
@@ -17,10 +17,11 @@ const categoriesList = [
 ];
 
 function BooksFilter() {
-  const { getBooks, categories, setCategories } = useContext(BooksContext);
+  const { getBooks, search, categories, setCategories } =
+    useContext(BooksContext);
 
   useEffect(() => {
-    getBooks({ categories });
+    getBooks({ categoriesList: categories, searchText: search });
   }, [categories.length]);
 
   const handleChange = ({ target: { value } }) => {
@@ -42,6 +43,7 @@ function BooksFilter() {
           label={category}
           value={category}
           name="bookFilter"
+          checked={categories.includes(category)}
           onChange={handleChange}
         />
       ))}

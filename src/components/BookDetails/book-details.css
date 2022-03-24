@@ -3,8 +3,24 @@
   min-height: calc(100vh - 50px);
   height: 100%;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 20px;
   overflow-y: auto;
+}
+
+.empty-details-wrapper {
+  height: calc(100vh - 50px);
+  margin: 0;
+}
+
+.back-to-books-link {
+  margin: 20px 0 0;
+  width: 96%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-to-books-link a {
+  margin: 0;
 }
 
 .image-block {
@@ -110,5 +126,8 @@
   }
   .button-wrapper {
     align-items: center;
+  }
+  .back-to-books-link {
+    justify-content: flex-start;
   }
 }

@@ -1,4 +1,4 @@
-import { useContext, useState, useCallback } from "react";
+import { useContext, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import debounce from "lodash.debounce";
@@ -7,16 +7,20 @@ import "./books-header.css";
 import { BooksContext } from "../../Providers/BooksProvider";
 
 function BooksHeader() {
-  const { getBooks, search, setSearch } = useContext(BooksContext);
+  const { getBooks, search, setSearch, categories } = useContext(BooksContext);
 
   const debouncedSearch = useCallback(
-    debounce((value) => getBooks({ searchText: value }), 1000),
+    debounce(
+      (value, categories) =>
+        getBooks({ searchText: value, categoriesList: categories }),
+      1000
+    ),
     []
   );
 
   const handleSearchChange = ({ target: { value } }) => {
     setSearch(value);
-    debouncedSearch(value);
+    debouncedSearch(value, categories);
   };
 
   return (

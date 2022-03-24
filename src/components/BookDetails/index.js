@@ -1,6 +1,11 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import isEmpty from "lodash.isempty";
+import Alert from "react-bootstrap/Alert";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import AddToCart from "../../static/images/icons/AddCartIcon";
 import PreviewIcon from "../../static/images/icons/PreviewIcon";
@@ -47,8 +52,6 @@ const BookDetails = () => {
     setPreviewHover(false);
   };
 
-  console.log("book", book);
-
   const {
     _id,
     title,
@@ -64,8 +67,18 @@ const BookDetails = () => {
 
   if (loading) {
     return (
-      <div className="loader-wrapper">
+      <div className="loader-wrapper empty-details-wrapper">
         <Spinner animation="border" variant="primary" />
+      </div>
+    );
+  }
+
+  if (isEmpty(book)) {
+    return (
+      <div className="empty-details-wrapper">
+        <Alert variant="danger" className="mt-5">
+          Something went wrong, Please try after sometime.
+        </Alert>
       </div>
     );
   }
@@ -78,6 +91,17 @@ const BookDetails = () => {
         bookPdf={bookUrl}
         preview={true}
       />
+
+      <div className="back-to-books-link">
+        <Link to="/books" className="books-link">
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            color="#0166b2"
+            className="back-icon"
+          />
+          Back to Books catalogue
+        </Link>
+      </div>
       <div className="books-details-wrapper">
         <div className="image-block">
           <div className="book-detail-image-wrapper">
@@ -93,6 +117,7 @@ const BookDetails = () => {
           <div className="book-author book-info">{author}</div>
           <div className="book-author book-info">{year}</div>
           <div className="book-author book-info">{category}</div>
+
           {price === 0 ? (
             <div className="free-book-tag detail-price">FREE</div>
           ) : (
@@ -101,6 +126,7 @@ const BookDetails = () => {
               <span className="book-price detail-price">{`$${actualPrice}`}</span>
             </div>
           )}
+
           <div className="button-wrapper">
             <button
               className="add-cart-button preview-button"

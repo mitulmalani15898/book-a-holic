@@ -11,20 +11,21 @@ const BooksProvider = (props) => {
   });
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     getBooks();
   }, []);
 
-  const getBooks = async ({ searchText = "" } = {}) => {
+  const getBooks = async ({ searchText = "", categoriesList = [] } = {}) => {
     try {
-      setBooks((prev) => ({ ...prev, loading: true }));
+      setBooks((prev) => ({ ...prev, loading: true, error: "" }));
       const params = {};
-      if (searchText || search) {
-        params.search = searchText || search;
+      if (searchText) {
+        params.search = searchText;
       }
-      if (categories.length) {
-        params.categories = JSON.stringify(categories);
+      if (categoriesList.length) {
+        params.categories = JSON.stringify(categoriesList);
       }
       const res = await axios.get("/books", {
         params,
@@ -34,14 +35,23 @@ const BooksProvider = (props) => {
       }
     } catch (error) {
       console.log("error", error);
-      setBooks((prev) => ({ ...prev, error }));
+      setBooks((prev) => ({ ...prev, error: error.message }));
     }
     setBooks((prev) => ({ ...prev, loading: false }));
   };
 
   return (
     <BooksContext.Provider
-      value={{ books, getBooks, search, setSearch, categories, setCategories }}
+      value={{
+        books,
+        getBooks,
+        search,
+        setSearch,
+        categories,
+        setCategories,
+        cart,
+        setCart,
+      }}
     >
       {props.children}
     </BooksContext.Provider>

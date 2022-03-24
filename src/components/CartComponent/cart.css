@@ -94,7 +94,7 @@
 
 .cart-order-summary {
   width: 27%;
-  height: calc(100% - 20px);
+  height: 80%;
   border: 1px solid #0166b2;
   padding: 10px;
 }
