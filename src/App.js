@@ -5,6 +5,7 @@ import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import BookDetails from "./pages/BookDetails";
+import Orders from "./components/Orders"
 
 import "./App.css";
 
@@ -17,7 +18,7 @@ const App = () => {
           <Route path="/" element={<Books />} />
           <Route path="/books" element={<Books />} />
           <Route path="/book/:id" element={<BookDetails />} />
-          <Route path="/orders" element={<Books />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<Books />} />
           <Route path="/cart" element={<Cart />} />

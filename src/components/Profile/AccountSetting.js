@@ -18,9 +18,9 @@ const userAccInput = {
   newPassword: "",
 };
 
-function AccountSetting() {
-  const [accDetails, updateAccDetails] = useState(DEF_USER_ACCOUNT_DETAILS);
-  const [userAccDetails, updateUserAccDetails] = useState(userAccInput);
+function AccountSetting({ userDetails }) {
+  const [accDetails, updateAccDetails] = useState(userDetails);
+  const [userAccDetails, updateUserAccDetails] = useState(userDetails);
   const [accountError, updateAccError] = useState(errorField);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

@@ -1,14 +1,17 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { HouseFill, LockFill, PencilSquare } from "react-bootstrap-icons";
 import AccountSetting from "./AccountSetting";
 import "./Profile.css";
 import ModalComponent from "./Modal";
+import axios from "axios";
 
 const DEF_USER_DETAILS = {
+  date: "",
+  _id: "",
   firstName: "Ashley",
   lastName: "Bratt",
-  iAm: "",
-  preference: [""],
+  occupation: "",
+  preferences: [""],
   email: "ashley.bratt@gmail.com",
 };
 
@@ -19,13 +22,24 @@ function Profile() {
   const [userDetails, updateUserDetails] = useState(DEF_USER_DETAILS);
   const [inputStates, updateInputState] = useState(DEF_USER_DETAILS);
   const [isDisabled, setDisabled] = useState(true);
+  const [preferencesList, setPreferences] = useState(PREFERENCES);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [profilePic, setProfilePic] = useState(null);
-  const profilePicURL = profilePic
-    ? profilePic
-    : require("../../static/images/display.jpg");
+  // const profilePicURL = profilePic
+  //   ? profilePic
+  //   : require("../../static/images/default-profile-pic.jpeg");
+
+  let profilePicURL = require("../../static/images/default-profile-pic.jpeg");
+
+  if (userDetails.avatar) {
+    profilePicURL = userDetails.avatar;
+  }
+
+  if (profilePic) {
+    profilePicURL = profilePic;
+  }
 
   const inputRef = useRef(null);
 
@@ -35,9 +49,27 @@ function Profile() {
     }
   };
 
-  const handleProfilePicChange = (e) => {
-    if (e.target.files[0])
+  const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  const handleProfilePicChange = async (e) => {
+    if (e.target.files[0]) {
+      // TODO /api/user/upload-profile
+      const base64 = await getBase64(e.target.files[0]);
+      axios("http://localhost:8080/api/user/upload-profile", {
+        method: "POST",
+        params: { email: "abhi@dal.ca" },
+        data: {
+          imageData: base64,
+        },
+      });
       setProfilePic(URL.createObjectURL(e.target.files[0]));
+    }
   };
 
   const errorSet = {
@@ -47,17 +79,17 @@ function Profile() {
   const [error, updateErrorState] = useState(errorSet);
 
   const isItemChecked = (item) => {
-    return userDetails.preference.includes(item);
+    return userDetails.preferences.includes(item);
   };
 
   const handlePrefChange = (e) => {
     const item = e.target.value;
-    const pref = inputStates.preference;
+    const pref = inputStates.preferences;
     const index = pref.indexOf(item);
     if (index === -1) pref.push(item);
     else pref.splice(index, 1);
 
-    updateInputState({ ...inputStates, preference: pref });
+    updateInputState({ ...inputStates, preferences: pref });
   };
 
   const handleInputChange = (e) => {
@@ -109,6 +141,19 @@ function Profile() {
     setDisabled(!isDisabled);
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/user/profile", {
+        params: { email: "abhi@dal.ca" },
+      })
+      .then((res) => {
+        console.log(res.data.data);
+        updateUserDetails({ ...res.data.data });
+        updateInputState(res.data.data);
+        console.log(res.data.data);
+      });
+  }, []);
+
   return (
     <div className="profile-container">
       <ModalComponent
@@ -120,12 +165,22 @@ function Profile() {
       />
       <div className="main-container">
         <div className="profile-picture-container">
-          <img
-            onClick={handleProfilePic}
-            className="profile-picture"
-            src={profilePicURL}
-            alt="profile picture"
-          />
+          <div className="pp-container">
+            <div
+              className="pp-overlay"
+              onClick={handleProfilePic}
+              src={profilePicURL}
+              alt="profile picture"
+            >
+              <div className="pp-overlay-text">Upload</div>
+            </div>
+            <img
+              onClick={handleProfilePic}
+              className="profile-picture"
+              src={profilePicURL}
+              alt="profile picture"
+            />
+          </div>
 
           <input
             onChange={handleProfilePicChange}
@@ -186,7 +241,7 @@ function Profile() {
                       id="form-firstname"
                       placeholder="First Name"
                       disabled={isDisabled}
-                      defaultValue={userDetails.firstName}
+                      value={userDetails.firstName}
                       name="firstName"
                       onChange={handleInputChange}
                     />
@@ -202,7 +257,7 @@ function Profile() {
                       class="form-control"
                       id="form-lastname"
                       placeholder="Last Name"
-                      defaultValue={userDetails.lastName}
+                      value={userDetails.lastName}
                       name="lastName"
                       onChange={handleInputChange}
                     />
@@ -218,11 +273,11 @@ function Profile() {
                       id="form-status"
                       disabled={isDisabled}
                       class="form-control"
-                      defaultValue={userDetails.iAm}
+                      value={userDetails.occupation}
                       name="iAm"
                       onChange={handleInputChange}
                     >
-                      <option value="" defaultValue={userDetails.iAm} selected>
+                      <option value="" value={userDetails.occupation} selected>
                         Choose...
                       </option>
                       <option value="Student">Student</option>
@@ -269,7 +324,7 @@ function Profile() {
               </form>
             </div>
           ) : selectedDiv === 2 ? (
-            <AccountSetting />
+            <AccountSetting userDetails={userDetails} />
           ) : null}
         </div>
       </div>

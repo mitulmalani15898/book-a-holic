@@ -187,3 +187,32 @@
     display: block;
   }
 }
+
+.pp-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.pp-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.pp-overlay-text {
+  color: white;
+  cursor: pointer;
+}
+
+.pp-container:hover > .pp-overlay {
+  display: flex;
+  transition: all 0.5 s ease;
+}
