@@ -11,7 +11,7 @@ const DEF_USER_DETAILS = {
   firstName: "",
   lastName: "",
   occupation: "",
-  preferences: "",
+  preferences: [""],
   email: "",
   password: "",
 };
@@ -20,8 +20,8 @@ const PREFERENCES = ["Non Fiction", "Fiction", "Drama", "Mythology"];
 
 function Profile() {
   const [selectedDiv, updateSelectedDiv] = useState(1);
-  const [userDetails, updateUserDetails] = useState(DEF_USER_DETAILS); // DATA HOLD
-  const [inputStates, updateInputState] = useState(DEF_USER_DETAILS); // any input changes - inputState
+  const [userDetails, updateUserDetails] = useState(DEF_USER_DETAILS);
+  const [inputStates, updateInputState] = useState(DEF_USER_DETAILS);
   const [isDisabled, setDisabled] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
@@ -73,29 +73,17 @@ function Profile() {
   const [error, updateErrorState] = useState(errorSet);
 
   const isItemChecked = (item) => {
-    const pregArr = inputStates?.preferences?.split(",");
-    return pregArr.includes(item);
-    // return userDetails.preferences.includes(item);
+    return userDetails.preferences.includes(item);
   };
 
   const handlePrefChange = (e) => {
     const item = e.target.value;
-    const pref = inputStates.preferences.split(",").filter((item) => {
-      return item !== "";
-    });
-
-    console.log("pref", pref);
+    const pref = inputStates.preferences;
     const index = pref.indexOf(item);
     if (index === -1) pref.push(item);
     else pref.splice(index, 1);
 
-    let newPref = "";
-    pref.forEach((item) => {
-      newPref += item + ",";
-    });
-
-    console.log("newPref", newPref);
-    updateInputState({ ...inputStates, preferences: newPref });
+    updateInputState({ ...inputStates, preferences: pref });
   };
 
   const handleInputChange = (e) => {
@@ -141,10 +129,10 @@ function Profile() {
     });
 
     axios
-      .put("http://localhost:8080/api/user/edit-general-profile", inputStates)
+      .put("http://localhost:8080/api/user/edit-general-profile", userDetails)
       .then((res) => {
         console.log(res.data.data);
-        // updateUserDetails(userDetails);
+        updateUserDetails({ ...res.data.data });
       });
 
     // axios.put("http://localhost:8080/api/user/edit-general-profile", {
@@ -179,17 +167,16 @@ function Profile() {
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/user/profile", {
-        params: { email: "abhi@dal.ca" }, // TODO use getCookie('email')
+        headers: {
+          'Authorization': `Token ${token}`
+        },
+        params: { email: "abhi@dal.ca" }, // TODO
       })
       .then((res) => {
         updateUserDetails({ ...res.data.data });
         updateInputState(res.data.data);
       });
   }, []);
-
-  const refresh = () => {
-    window.location.reload();
-  };
 
   return (
     <div className="profile-container">
@@ -310,11 +297,11 @@ function Profile() {
                       id="form-status"
                       disabled={isDisabled}
                       class="form-control"
-                      value={inputStates.occupation}
-                      name="occupation"
+                      defaultValue={userDetails.occupation}
+                      name="iAm"
                       onChange={handleInputChange}
                     >
-                      <option value={""} selected>
+                      <option value="" value={userDetails.occupation} selected>
                         Choose...
                       </option>
                       <option value="Student">Student</option>
@@ -331,13 +318,12 @@ function Profile() {
                     return (
                       <div key={idx} class="form-check">
                         <input
-                          checked={isItemChecked(item)}
+                          defaultChecked={isItemChecked(item)}
                           class="form-check-input"
                           type="checkbox"
                           id="preference-fiction"
-                          // onClick={handlePrefChange}
+                          defaultValue={item}
                           disabled={isDisabled}
-                          value={item}
                           onChange={handlePrefChange}
                         />
                         <label
@@ -351,17 +337,12 @@ function Profile() {
                   })}
                 </div>
                 {isDisabled === false && (
-                  <div className="update-cancel-btn">
-                    <div
-                      onClick={handleGeneralUpdate}
-                      type="submit"
-                      className="update-btn"
-                    >
-                      Update
-                    </div>
-                    <div onClick={refresh} type="submit" className="cancel-btn">
-                      Cancel
-                    </div>
+                  <div
+                    onClick={handleGeneralUpdate}
+                    type="submit"
+                    className="update-btn"
+                  >
+                    Update
                   </div>
                 )}
               </form>
