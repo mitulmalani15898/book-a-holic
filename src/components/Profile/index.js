@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect } from "react";
-import { HouseFill, LockFill, PencilSquare } from "react-bootstrap-icons";
+import {
+  DashLg,
+  HouseFill,
+  LockFill,
+  PencilSquare,
+} from "react-bootstrap-icons";
 import AccountSetting from "./AccountSetting";
 import "./Profile.css";
 import ModalComponent from "./Modal";
@@ -17,11 +22,12 @@ const DEF_USER_DETAILS = {
 };
 
 const PREFERENCES = ["Non Fiction", "Fiction", "Drama", "Mythology"];
+const USER_EMAIL = "yashvi@dal.ca"; // TODO use getCookie('email')
 
 function Profile() {
   const [selectedDiv, updateSelectedDiv] = useState(1);
-  const [userDetails, updateUserDetails] = useState(DEF_USER_DETAILS); // DATA HOLD
-  const [inputStates, updateInputState] = useState(DEF_USER_DETAILS); // any input changes - inputState
+  const [userDetails, updateUserDetails] = useState(DEF_USER_DETAILS);
+  const [inputStates, updateInputState] = useState(DEF_USER_DETAILS);
   const [isDisabled, setDisabled] = useState(true);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
@@ -55,9 +61,9 @@ function Profile() {
   const handleProfilePicChange = async (e) => {
     if (e.target.files[0]) {
       const base64 = await getBase64(e.target.files[0]);
-      axios("http://localhost:8080/api/user/upload-profile", {
+      axios("http://localhost:8080/api/user/upload-profile", { //TODO: Change url
         method: "POST",
-        params: { email: "abhi@dal.ca" },
+        params: { email: USER_EMAIL },
         data: {
           imageData: base64,
         },
@@ -75,7 +81,6 @@ function Profile() {
   const isItemChecked = (item) => {
     const pregArr = inputStates?.preferences?.split(",");
     return pregArr.includes(item);
-    // return userDetails.preferences.includes(item);
   };
 
   const handlePrefChange = (e) => {
@@ -141,18 +146,10 @@ function Profile() {
     });
 
     axios
-      .put("http://localhost:8080/api/user/edit-general-profile", inputStates)
+      .put("http://localhost:8080/api/user/edit-general-profile", inputStates) // TODO: Change url
       .then((res) => {
         console.log(res.data.data);
-        // updateUserDetails(userDetails);
       });
-
-    // axios.put("http://localhost:8080/api/user/edit-general-profile", {
-    //   method: "PUT",
-    //   data: {
-    //     userDetails
-    //   },
-    // });
 
     console.log(userDetails);
     console.log(inputStates);
@@ -161,25 +158,14 @@ function Profile() {
     setDisabled(true);
   };
 
-  // const handlePutRequest = async (e) => {
-  //   axios
-  //     .put("http://localhost:8080/api/user/edit-general-profile", {
-  //       data: { userDetails },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data.data);
-  //       updateUserDetails({ ...res.data.data });
-  //     });
-  // }
-
   const handleEditChange = () => {
     setDisabled(!isDisabled);
   };
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/user/profile", {
-        params: { email: "abhi@dal.ca" }, // TODO use getCookie('email')
+      .get("http://localhost:8080/api/user/profile", { // TODO: Change url
+        params: { email: USER_EMAIL },
       })
       .then((res) => {
         updateUserDetails({ ...res.data.data });
