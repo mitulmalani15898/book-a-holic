@@ -2,17 +2,19 @@ import { useState, React } from "react";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"
 
 function ReviewModal({
-    buttonActionText = "",
-    heading,
-    desc,
-    show = true,
-    onClose,
-    onActionClick,
-    showActionButton,
+  buttonActionText = "",
+  heading,
+  desc,
+  onClose,
+  show,
+  onActionClick,
+  showActionButton,
 }) {
   const [review, setReview] = useState("");
+  const navigate = useNavigate();
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,14 +24,14 @@ function ReviewModal({
         })
         .then((res) => {
           alert("Review added successfully");
-          //navigate Order history
+          navigate("/")
         })
         .catch((error) => {
           alert("Could not add the review. Please try again later!");
         });
     } catch (err) {
       alert("Server error.Could not add the review. Please try again later!");
-      // navigate to order history page.
+      navigate("/")
     }
   };
   return (
@@ -56,7 +58,7 @@ function ReviewModal({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" variant="primary" >
+          <Button type="submit" variant="primary">
             Submit
           </Button>
         </Modal.Footer>

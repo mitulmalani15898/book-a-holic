@@ -1,31 +1,27 @@
-import {React, useState} from 'react';
-import GiveReview from "./GiveReview";
-import {Button} from 'react-bootstrap'; 
-function Dummy(){
+import { React, useState } from "react";
+import ReviewModal from "./GiveReview";
 
-    const [modalVisible,setModalVisible] = useState(false);
-    <GiveReview
-    show = {modalVisible}
-    onClose = {()=>{
-        setModalVisible(false);
-    }}
-    >
-    </GiveReview>
+function Dummy() {
+  const [modalVisible, setModalVisible] = useState(false);
 
-    const handleReview = (e) =>{
-        e.preventDefault();
-        setModalVisible(true)
-    }
+  const toggleReviewModal = () => {
+    setModalVisible(!modalVisible);
+  };
 
-    return (
-        <div>
-            {/* <div onClick = {handleReview}>
-                click me!
-            </div> */}
+  const handleReview = (e) => {
+    e.preventDefault();
+    // setModalVisible(true)
+  };
 
-            <Button variant="primary" onClick={handleReview}>Hi</Button>
-        </div>
-    )
+  return (
+    <div>
+      <div onClick={toggleReviewModal}>click me!</div>
+      <ReviewModal onClose={toggleReviewModal} show={modalVisible} />
+      {/* <Button variant="primary" onClick={handleReview}>
+        Hi
+      </Button> */}
+    </div>
+  );
 }
 
 export default Dummy;

@@ -8,9 +8,8 @@ import BookDetails from "./pages/BookDetails";
 import LogIn from "./components/UserAuthentication/LogIn";
 import SignUp from "./components/UserAuthentication/SignUp";
 import Forgot from "./components/UserAuthentication/Forgot";
-import GiveReview from "./components/Reviews/GiveReview"
 import GetReview from "./components/Reviews/GetReview"
-import Dumm from "./components/Reviews/index"
+
 
 import "./App.css";
 
@@ -29,9 +28,7 @@ const App = () => {
           <Route path="/orders" element={<Books />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<Books />} />
-          <Route path="/giveReview" element={<GiveReview />} />
           <Route path="/getReview" element={<GetReview />} />
-          <Route path="/indi" element={<Dumm/>} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
