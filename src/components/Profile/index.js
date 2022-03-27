@@ -1,10 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import {
-  DashLg,
-  HouseFill,
-  LockFill,
-  PencilSquare,
-} from "react-bootstrap-icons";
+import { HouseFill, LockFill, PencilSquare } from "react-bootstrap-icons";
 import AccountSetting from "./AccountSetting";
 import "./Profile.css";
 import ModalComponent from "./Modal";
@@ -61,7 +56,8 @@ function Profile() {
   const handleProfilePicChange = async (e) => {
     if (e.target.files[0]) {
       const base64 = await getBase64(e.target.files[0]);
-      axios("http://localhost:8080/api/user/upload-profile", { //TODO: Change url
+      axios("http://localhost:8080/api/user/upload-profile", {
+        //TODO: Change url
         method: "POST",
         params: { email: USER_EMAIL },
         data: {
@@ -164,7 +160,8 @@ function Profile() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/user/profile", { // TODO: Change url
+      .get("http://localhost:8080/api/user/profile", {
+        // TODO: Change url
         params: { email: USER_EMAIL },
       })
       .then((res) => {
