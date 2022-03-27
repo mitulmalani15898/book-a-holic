@@ -5,14 +5,16 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+const USER_EMAIL = "yashvi@dal.ca";
+
 function Orders() {
   const [ordersList, setOrdersList] = useState([]);
   const [filteredList, setFilteredList] = useState(ordersList);
-  const [sortType, setSortType] = useState("asc");
+  const [sortType, setSortType] = useState("desc");
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/orders/abhi@dal.ca").then((res) => {
+    axios.get(`http://localhost:8080/api/orders/${USER_EMAIL}`).then((res) => {
       setOrdersList(res.data.data);
       setFilteredList(res.data.data);
     });
@@ -40,13 +42,13 @@ function Orders() {
   };
 
   useEffect(() => {
-    const desc = (a, b) => {
+    const asc = (a, b) => {
       return (
         new Date(a.purchaseDate).getTime() - new Date(b.purchaseDate).getTime()
       );
     };
 
-    const asc = (a, b) => {
+    const desc = (a, b) => {
       return (
         new Date(b.purchaseDate).getTime() - new Date(a.purchaseDate).getTime()
       );
@@ -86,10 +88,10 @@ function Orders() {
             className="order-sort"
           >
             <Dropdown.Item onClick={(event) => setSortType("asc")}>
-              Ascending Order
+              Recent
             </Dropdown.Item>
             <Dropdown.Item onClick={(event) => setSortType("desc")}>
-              Descending Order
+              Older
             </Dropdown.Item>
           </DropdownButton>
         </div>
