@@ -5,20 +5,20 @@ import ModalComponent from "./Modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const DEF_USER_ACCOUNT_DETAILS = {
-  email: "ashley.bratt@gmail.com",
-  password: "Ashley@123",
-};
+// const DEF_USER_ACCOUNT_DETAILS = {
+//   email: "ashley.bratt@gmail.com",
+//   password: "Ashley@123",
+// };
 
 const errorField = {
   errorCurrentPassword: "",
   errorNewPassword: "",
 };
 
-const userAccInput = {
-  currentPassword: "",
-  newPassword: "",
-};
+// const userAccInput = {
+//   currentPassword: "",
+//   newPassword: "",
+// };
 
 function AccountSetting({ userDetails }) {
   const [accDetails, updateAccDetails] = useState(userDetails); //input
@@ -75,7 +75,6 @@ function AccountSetting({ userDetails }) {
     e.preventDefault();
     if (handleAccValidation() === false) return;
 
-    // Update password
     axios
       .put("http://localhost:8080/api/user/edit-general-profile", {
         password: userAccDetails.newPassword,
@@ -85,7 +84,6 @@ function AccountSetting({ userDetails }) {
         console.log(res.data.data);
         if (newPasswordRef.current) newPasswordRef.current.value = "";
         if (passRef.current) passRef.current.value = "";
-        // updateUserDetails(userDetails);
       });
 
     console.log(accDetails, userAccDetails);
@@ -182,11 +180,8 @@ function AccountSetting({ userDetails }) {
                   userDetails.email
                 )
                 .then((res) => {
-                  //TODO: navigate to home page
                   navigate("/");
                 });
-
-              // window.location.href = "deleted.html";
             }}
             buttonActionText={"Confirm"}
             desc={"Are you sure, you wish to delete the account?"}
