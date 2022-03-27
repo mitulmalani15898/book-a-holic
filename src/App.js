@@ -5,11 +5,11 @@ import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import BookDetails from "./pages/BookDetails";
+import Orders from "./components/Orders";
 import LogIn from "./components/UserAuthentication/LogIn";
 import SignUp from "./components/UserAuthentication/SignUp";
 import Forgot from "./components/UserAuthentication/Forgot";
-import GetReview from "./components/Reviews/GetReview"
-
+import GetReview from "./components/Reviews/GetReview";
 
 import "./App.css";
 
@@ -25,7 +25,7 @@ const App = () => {
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/books" element={<Books />} />
           <Route path="/book/:id" element={<BookDetails />} />
-          <Route path="/orders" element={<Books />} />
+          <Route path="/orders" element={<Orders />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/contact-us" element={<Books />} />
           <Route path="/getReview" element={<GetReview />} />
