@@ -5,7 +5,7 @@ import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
 import BookDetails from "./pages/BookDetails";
-import Orders from "./components/Orders"
+import Orders from "./components/Orders";
 
 import "./App.css";
 

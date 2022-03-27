@@ -52,7 +52,6 @@ function Orders() {
       );
     };
 
-    console.log(sortType);
     if (sortType === "asc") {
       const newItems = filteredList.sort(asc);
       setFilteredList([...newItems]);
@@ -60,8 +59,6 @@ function Orders() {
       const newItems = filteredList.sort(desc);
       setFilteredList([...newItems]);
     }
-
-    // sortOrders();
   }, [sortType]);
 
   return (
@@ -88,16 +85,10 @@ function Orders() {
             title="Sort By Date"
             className="order-sort"
           >
-            <Dropdown.Item
-              onClick={(event) => setSortType("asc")}
-              value="ascending"
-            >
+            <Dropdown.Item onClick={(event) => setSortType("asc")}>
               Ascending Order
             </Dropdown.Item>
-            <Dropdown.Item
-              onClick={(event) => setSortType("desc")}
-              value="descending"
-            >
+            <Dropdown.Item onClick={(event) => setSortType("desc")}>
               Descending Order
             </Dropdown.Item>
           </DropdownButton>
