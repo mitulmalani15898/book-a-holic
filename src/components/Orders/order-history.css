@@ -20,6 +20,7 @@ body {
   padding-bottom: 0%;
   border: 1px solid rgb(223, 223, 223);
   color: rgb(44, 44, 44);
+  font-family: IbmPlex;
 }
 
 .order-heading {
@@ -28,6 +29,7 @@ body {
   margin: 0%;
   margin-bottom: 0%;
   display: flex;
+  font-family: IbmPlex Medium;
 }
 
 .order-content {
