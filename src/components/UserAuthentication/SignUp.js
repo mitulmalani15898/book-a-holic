@@ -184,7 +184,7 @@ const SignUp = () => {
               type="submit"
               onClick={handleSubmit}
             >
-              Login
+              Signup
             </div>
             <br/>
             Already Registered? &nbsp;
