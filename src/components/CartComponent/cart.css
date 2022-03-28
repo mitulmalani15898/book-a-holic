@@ -1,0 +1,174 @@
+.cart-main-wrapper {
+  height: 100%;
+  width: 1000px;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0 10px;
+  font-family: IbmPlex Medium;
+}
+
+.cart-header {
+  display: flex;
+  flex-direction: column;
+  width: 68%;
+}
+
+.cart-books {
+  padding: 10px 20px 10px 10px;
+  overflow-y: scroll;
+}
+
+.cart-book-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.cart-book-image-cover {
+  max-height: 180px;
+  height: 180px;
+}
+
+.cart-book-image {
+  border-radius: 3px;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 6px 12px rgb(0 0 0 / 30%);
+}
+
+.cart-book-title {
+  font-family: IbmPlex Medium;
+  font-size: 16px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin: 10px 0 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+}
+
+.cart-book-author {
+  font-family: IbmPlex Light;
+  font-size: 14px;
+  margin-bottom: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+}
+
+.cart-header-title {
+  width: 100%;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 3px solid #0166b2;
+  color: #0166b2;
+}
+
+.cart-remove-book-icon {
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.books-link {
+  text-align: right;
+  margin: 10px;
+  color: #0166b2 !important;
+  text-decoration: none;
+}
+
+.books-link:hover {
+  text-decoration: underline;
+}
+
+.back-icon {
+  margin-right: 10px;
+}
+
+.cart-order-summary {
+  width: 27%;
+  height: 80%;
+  border: 1px solid #0166b2;
+  padding: 10px;
+}
+
+.order-summary-title {
+  font-size: 24px;
+  border-bottom: 3px solid #0166b2;
+  color: #0166b2;
+  padding: 5px;
+}
+
+.order-summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 60px);
+}
+
+.order-summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.apply-promo-button {
+  width: max-content;
+  padding: 5px 20px 2px;
+  margin: 10px auto 30px;
+  font-family: IBMPlex Medium;
+  font-weight: 400;
+  border-radius: 5px;
+  box-shadow: none !important;
+  border: 1px solid #fff !important;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #0166b2;
+}
+
+.apply-promo-button:hover {
+  background-color: #fff;
+  color: #0166b2;
+  border: 1px solid #0166b2 !important;
+}
+
+.divider {
+  border-bottom: 3px solid #0166b2;
+}
+
+.total-cost {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 10px 20px 7px;
+  margin: 10px 0 0;
+  font-family: IBMPlex Medium;
+  font-weight: 400;
+  border-radius: 5px;
+  box-shadow: none !important;
+  border: 1px solid #fff !important;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #0166b2;
+}
+
+.checkout-button:hover {
+  background-color: #fff;
+  color: #0166b2;
+  border: 1px solid #0166b2 !important;
+}
+
+.checkout-button:hover svg {
+  color: #0166b2;
+}

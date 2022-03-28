@@ -1,0 +1,38 @@
+.preview-modal .modal-dialog {
+  max-width: 614px;
+}
+
+.preview-modal .modal-body {
+  padding: 0;
+}
+
+.react-pdf__Document {
+  width: 100%;
+}
+
+.react-pdf__Page {
+  width: 100%;
+}
+
+.react-pdf__Page__canvas {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.prev-next-button {
+  padding: 4px 25px 2px;
+  font-family: IBMPlex Medium;
+  font-weight: 400;
+  border-radius: 50px;
+  box-shadow: none !important;
+  border: 1px solid #fff !important;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: #0166b2;
+}
+
+.prev-next-button:hover {
+  background-color: #fff;
+  color: #0166b2;
+  border: 1px solid #0166b2 !important;
+}

@@ -1,0 +1,240 @@
+.profile-container {
+  height: calc(100vh - 50px);
+}
+
+.main-container {
+  background-color: white;
+  height: 600px;
+  max-width: 100%;
+  width: 850px;
+  margin: 4em auto 3em auto;
+  border-radius: 1.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0%;
+  border: 1px solid rgb(223, 223, 223);
+  color: rgb(44, 44, 44);
+}
+
+.profile-picture-container {
+  background-color: white;
+  height: 87%;
+  width: 30%;
+  border-right: thin solid rgb(223, 223, 223);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-info-container {
+  background-color: white;
+  height: 87%;
+  width: 70%;
+}
+
+.profile-picture {
+  width: 130px;
+  cursor: pointer;
+  height: 130px;
+  border-radius: 50%;
+}
+
+.profile-button {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 0%;
+}
+
+.profile-button span {
+  width: 100%;
+  border: 1px solid rgb(223, 223, 223);
+  padding: 15px;
+  color: rgb(44, 44, 44);
+}
+
+.active-setting {
+  background-color: #0165b2;
+  color: white !important;
+}
+
+.heading-general {
+  padding: 5%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 550;
+  display: inline-block;
+}
+
+.form-general {
+  padding: 5%;
+  padding-top: 0%;
+}
+
+#user-name {
+  padding-top: 30%;
+  align-self: center;
+  font-size: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 550;
+}
+
+.edit-btn {
+  position: absolute;
+  right: 30px;
+  top: 28px;
+  width: 79px;
+  height: 30px;
+  background: #0165b2;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  cursor: pointer;
+  padding: 2%;
+}
+
+.update-btn {
+  background-color: #0165b2;
+  width: 75px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  color: white;
+  cursor: pointer;
+  padding: 3.5%;
+  margin-top: 3%;
+}
+
+.cancel-btn {
+  background-color: #fd5656;
+  width: 75px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  color: white;
+  cursor: pointer;
+  padding: 3.5%;
+  margin-top: 3%;
+}
+
+.update-cancel-btn {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4%;
+}
+
+.update-account-btn {
+  background-color: #0165b2;
+  width: 180px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  color: white;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  font-size: 93%;
+}
+
+.container-div {
+  position: relative;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: red;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.delete-account-btn {
+  background-color: #fd5656;
+  width: 180px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5%;
+  color: white;
+  cursor: pointer;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  position: relative;
+  font-size: 93%;
+}
+
+.account-btn-container {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4%;
+}
+
+.display-none {
+  display: none;
+}
+
+@media screen and (max-width: 728px) {
+  .profile-info-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .profile-picture-container {
+    width: 100%;
+    height: auto;
+    padding-top: 40px;
+  }
+
+  #user-name {
+    padding-top: 10px;
+  }
+
+  .main-container {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.pp-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.pp-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.pp-overlay-text {
+  color: white;
+  cursor: pointer;
+}
+
+.pp-container:hover > .pp-overlay {
+  display: flex;
+  transition: all 0.5 s ease;
+}

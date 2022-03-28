@@ -1,0 +1,133 @@
+.books-details-wrapper {
+  display: flex;
+  min-height: calc(100vh - 50px);
+  height: 100%;
+  justify-content: center;
+  margin-top: 20px;
+  overflow-y: auto;
+}
+
+.empty-details-wrapper {
+  height: calc(100vh - 50px);
+  margin: 0;
+}
+
+.back-to-books-link {
+  margin: 20px 0 0;
+  width: 96%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-to-books-link a {
+  margin: 0;
+}
+
+.image-block {
+  width: 30%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.book-detail-image-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+.book-detail-image {
+  width: 80%;
+  border-radius: 4px;
+  box-shadow: 0px 6px 12px rgb(0 0 0 / 30%);
+}
+
+.book-details-block {
+  width: 60%;
+}
+
+.details-title {
+  font-size: 26px;
+  height: unset;
+  text-align: left;
+  margin: 10px 0 10px;
+}
+
+.book-category {
+  height: auto;
+  font-size: 18px;
+}
+
+.book-info {
+  height: auto;
+  font-size: 18px;
+}
+
+.detail-price {
+  font-size: 18px;
+}
+
+.button-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.cart-button {
+  width: max-content;
+  padding: 6px 40px;
+  margin-top: 0;
+}
+
+.preview-button {
+  width: max-content;
+  padding: 6px 40px;
+  margin-top: 0;
+  margin-right: 10px;
+}
+
+.book-detail-description {
+  font-family: IbmPlex Medium;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .button-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cart-button {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .books-details-wrapper {
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  .image-block {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  .book-detail-image {
+    width: 70%;
+  }
+  .book-details-block {
+    width: 100%;
+  }
+  .details-title,
+  .book-info,
+  .detail-price,
+  .price-wrapper {
+    text-align: center;
+  }
+  .button-wrapper {
+    align-items: center;
+  }
+  .back-to-books-link {
+    justify-content: flex-start;
+  }
+}

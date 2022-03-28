@@ -1,17 +1,17 @@
-# Tutorial 2 : Group 3
+# Project: Group 3
 
 This is the group project repository for the course CSCI 5709 - Advanced Topics in Web Development instructed by Professor Maria Gabriella Mosquera.
 
 * *Date Created*: 27 Jan 2022
-* *Last Modification Date*: 28 Jan 2022
+* *Last Modification Date*: 24 Feb 2022
 
 ## URLs
-* *Main Repository*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/>
-* *Yashvi Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_yashvi>
-* *Mitul Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_mitul>
-* *Jainam Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_jainam/>
-* *Prit Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_prit>
-* *Ninad Branch URL*: <https://git.cs.dal.ca/ygulati/csci-5709-w2022-group3/-/tree/feature_ninad>
+* *Main Repository*: <https://git.cs.dal.ca/ygulati/group3_csci5709>
+* *Yashvi Branch URL*: <https://git.cs.dal.ca/ygulati/group3_csci5709/-/tree/feature_yashvi>
+* *Mitul Branch URL*: <https://git.cs.dal.ca/ygulati/group3_csci5709/-/tree/feature_mitul>
+* *Jainam Branch URL*: <https://git.cs.dal.ca/ygulati/group3_csci5709/-/tree/feature_jainam/>
+* *Prit Branch URL*: <https://git.cs.dal.ca/ygulati/group3_csci5709/-/tree/feature_prit>
+* *Ninad Branch URL*: <https://git.cs.dal.ca/ygulati/group3_csci5709/-/tree/feature_ninad>
 
 
 ## Authors
