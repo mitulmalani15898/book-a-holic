@@ -4,19 +4,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import GiveReview from "../Reviews/GiveReview";
 
-const USER_EMAIL = "yashvi@dal.ca";
+const USER_EMAIL="yashvi@dal.ca";
 
 function Orders() {
+  const [modalVisible, setModalVisible] = useState(false);
   const [ordersList, setOrdersList] = useState([]);
   const [filteredList, setFilteredList] = useState(ordersList);
   const [sortType, setSortType] = useState("desc");
   const [query, setQuery] = useState("");
 
+  const toggleReviewModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   useEffect(() => {
     axios.get(`http://localhost:8080/api/orders/${USER_EMAIL}`).then((res) => {
       setOrdersList(res.data.data);
       setFilteredList(res.data.data);
+  
     });
   }, []);
 
@@ -99,11 +106,14 @@ function Orders() {
       {filteredList.length === 0 && <div>No Orders Found.</div>}
       {filteredList &&
         filteredList.map((res) => (
-          <div className="order-container" key={res.id}>
+          <div className="order-container" key={res._id}>
             <div className="order-card">
               <p className="order-heading">Order ID:</p>
               <p className="order-content">{res._id}</p>
-              <div className="review-button">Write a Review</div>
+              <div className="review-button">
+              <div onClick={toggleReviewModal}>Write a Review</div>
+                <GiveReview order = {res} onClose={toggleReviewModal} show={modalVisible} />
+              </div>
             </div>
             <div className="order-card">
               <p className="order-heading">Book Name:</p>

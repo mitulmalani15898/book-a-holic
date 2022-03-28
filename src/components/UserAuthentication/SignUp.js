@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Login from "./LogIn";
+import { useNavigate } from "react-router-dom";
 import "./UserAuth.css";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   let [form, setForm] = useState({});
   let [errors, setErrors] = useState({});
   let [done, setDone] = useState(false);
@@ -30,14 +32,14 @@ const SignUp = () => {
           })
           .then((res) => {
             alert("User Account Created");
-            //navigate to login page.
+            navigate("/login")
           })
           .catch((error) => {
             alert("User Email already exists. Try resetting the password");
           });
       } catch (err) {
         alert("Could not sign up the user. Please try again!");
-        // navigate to login page.
+        navigate("/signup")
       }
       setDone(true);
     }
@@ -99,9 +101,10 @@ const SignUp = () => {
 
       {!done && [
         <div className="signup-container flex-column ">
+          <hr/>
           <h3>Registration Form</h3>
           <hr style={{ width: "20%", border: "1px solid black" }} />
-          <p> Come join our community. Let's setup your account! </p>
+          <p> <center>Come join our community. Let's setup your account! </center></p>
           <Form style={{ width: "330px", textAlign: "left" }}>
             <Form.Group>
               <Form.Label>First Name</Form.Label>
@@ -177,8 +180,10 @@ const SignUp = () => {
             >
               Login
             </div>
+            <br/>
             Already Registered? &nbsp;
             <Link to="/login">Log In</Link>
+            <hr style={{ width: "0%" }}/>
           </Form>
         </div>,
       ]}
