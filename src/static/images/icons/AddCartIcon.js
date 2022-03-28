@@ -1,3 +1,4 @@
+// Author: Mitul Pravinbhai Malani (B00869519)
 const AddCartIcon = (props) => {
   return (
     <svg

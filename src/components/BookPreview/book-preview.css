@@ -1,9 +1,16 @@
+/* Author: Mitul Pravinbhai Malani (B00869519) */
 .preview-modal .modal-dialog {
   max-width: 614px;
 }
 
 .preview-modal .modal-body {
+  min-height: 100px;
   padding: 0;
+}
+
+.react-pdf__message {
+  text-align: center;
+  margin: 20px auto;
 }
 
 .react-pdf__Document {

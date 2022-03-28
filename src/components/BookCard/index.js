@@ -1,3 +1,4 @@
+// Author: Mitul Pravinbhai Malani (B00869519)
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -5,7 +6,7 @@ import { useCookies } from "react-cookie";
 import { BooksContext } from "../../Providers/BooksProvider";
 import AddToCart from "../../static/images/icons/AddCartIcon";
 import { BASE_URL } from "../../utils/constants";
-import DefaultBookImage from "../../static/images/noCoverAvailable.png";
+import DefaultBook from "../../static/images/DefaultBook.png";
 
 import "./book-card.css";
 
@@ -43,9 +44,13 @@ function BookCard({ book, isIncludedInCart }) {
         <div className="book-image-wrapper">
           <div className="book-image-cover">
             <img
-              src={`${BASE_URL + imageUrl}` || DefaultBookImage}
+              src={`${BASE_URL + imageUrl}`}
               alt="book-cover"
               className="book-image"
+              onError={({ currentTarget }) => {
+                currentTarget.onError = null;
+                currentTarget.src = DefaultBook;
+              }}
             />
           </div>
         </div>
