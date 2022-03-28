@@ -1,3 +1,4 @@
+// Author: Mitul Pravinbhai Malani (B00869519)
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
@@ -11,13 +12,18 @@ import AddToCart from "../../static/images/icons/AddCartIcon";
 import PreviewIcon from "../../static/images/icons/PreviewIcon";
 import { BASE_URL } from "../../utils/constants";
 import { BooksContext } from "../../Providers/BooksProvider";
+import DefaultBook from "../../static/images/DefaultBook.png";
 import BookPreview from "../BookPreview";
 
 import "./book-details.css";
 
 const BookDetails = () => {
   const { id } = useParams();
-  const { books: { data, loading } = {} } = useContext(BooksContext);
+  const {
+    cart,
+    setCart,
+    books: { data, loading } = {},
+  } = useContext(BooksContext);
 
   const [book, setBook] = useState({});
   const [showPreview, setShowPreview] = useState(false);
@@ -30,26 +36,16 @@ const BookDetails = () => {
     }
   }, [data.length]);
 
-  const handleAddToCart = () => {};
-
-  const handleMouseEnter = () => {
-    setIsHover(true);
+  const handleAddToCart = (book) => () => {
+    setCart((prev) => [...prev, book]);
   };
 
-  const handleMouseLeave = () => {
-    setIsHover(false);
+  const handleRemoveFromCart = (book) => () => {
+    setCart((prev) => prev.filter((b) => b._id !== book._id));
   };
 
   const handleShowPreview = () => {
     setShowPreview((prev) => !prev);
-  };
-
-  const handlePreviewMouseEnter = () => {
-    setPreviewHover(true);
-  };
-
-  const handlePreviewMouseLeave = () => {
-    setPreviewHover(false);
   };
 
   const {
@@ -65,6 +61,8 @@ const BookDetails = () => {
     year,
   } = book;
 
+  const isIncludedInCart = cart.find((b) => b._id === book._id);
+
   if (loading) {
     return (
       <div className="loader-wrapper empty-details-wrapper">
@@ -73,7 +71,7 @@ const BookDetails = () => {
     );
   }
 
-  if (isEmpty(book)) {
+  if (!loading && isEmpty(book)) {
     return (
       <div className="empty-details-wrapper">
         <Alert variant="danger" className="mt-5">
@@ -91,7 +89,6 @@ const BookDetails = () => {
         bookPdf={bookUrl}
         preview={true}
       />
-
       <div className="back-to-books-link">
         <Link to="/books" className="books-link">
           <FontAwesomeIcon
@@ -109,6 +106,10 @@ const BookDetails = () => {
               src={`${BASE_URL + imageUrl}`}
               alt="book-cover"
               className="book-detail-image"
+              onError={({ currentTarget }) => {
+                currentTarget.onError = null;
+                currentTarget.src = DefaultBook;
+              }}
             />
           </div>
         </div>
@@ -131,8 +132,8 @@ const BookDetails = () => {
             <button
               className="add-cart-button preview-button"
               onClick={handleShowPreview}
-              onMouseEnter={handlePreviewMouseEnter}
-              onMouseLeave={handlePreviewMouseLeave}
+              onMouseEnter={() => setPreviewHover(true)}
+              onMouseLeave={() => setPreviewHover(false)}
             >
               <PreviewIcon
                 className="add-cart-icon"
@@ -140,20 +141,28 @@ const BookDetails = () => {
               />
               Preview
             </button>
-            <button
-              className="add-cart-button cart-button"
-              onClick={handleAddToCart}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <AddToCart
-                className="add-cart-icon"
-                color={isHover ? "#0166B2" : "#FFF"}
-              />
-              Add To Cart
-            </button>
+            {isIncludedInCart ? (
+              <button
+                className="add-cart-button cart-button remove-cart-button"
+                onClick={handleRemoveFromCart(book)}
+              >
+                Remove
+              </button>
+            ) : (
+              <button
+                className="add-cart-button cart-button"
+                onClick={handleAddToCart(book)}
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
+              >
+                <AddToCart
+                  className="add-cart-icon"
+                  color={isHover ? "#0166B2" : "#FFF"}
+                />
+                Add To Cart
+              </button>
+            )}
           </div>
-
           <div className="book-detail-description">{bookDescription}</div>
         </div>
       </div>

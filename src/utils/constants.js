@@ -1,3 +1,4 @@
+// Author: Mitul Pravinbhai Malani (B00869519)
 export const BASE_URL =
   process.env.NODE_ENV === "production"
     ? "https://bookaholic-backend.herokuapp.com/"
