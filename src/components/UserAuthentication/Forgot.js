@@ -12,7 +12,7 @@ const Forgot = (props) => {
   return (
     <div className="forgot-container flex-column">
       <h3>Account Recovery</h3>
-      <hr style={{ width: "20%", border: "1px solid black" }} />
+      <hr style={{ width: "50%", border: "1px solid black" }} />
       <Form style={{ width: "330px", textAlign: "left", marginTop: "2" }}>
         <Form.Group>
           <Form.Label>User ID</Form.Label>
@@ -33,6 +33,7 @@ const Forgot = (props) => {
             Reset!{" "}
           </Button>
         </div>
+        <hr style={{ width: "0%" }}/>
         <p>
           {" "}
           Log into your Account? <Link to="/Login">Click here</Link>{" "}

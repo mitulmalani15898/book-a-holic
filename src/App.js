@@ -13,7 +13,8 @@ import GetReview from "./components/Reviews/GetReview";
 
 import "./App.css";
 
-const App = () => {
+export default function App() {
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -35,5 +36,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;

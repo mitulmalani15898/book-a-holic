@@ -2,25 +2,24 @@ import { useState, React } from "react";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
-function ReviewModal({
-  buttonActionText = "",
-  heading,
-  desc,
+function GiveReview({
   onClose,
   show,
-  onActionClick,
-  showActionButton,
+  order
 }) {
-  const [review, setReview] = useState("");
+  const [holdReview, setReview] = useState("");
+
   const navigate = useNavigate();
-  let handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       axios
-        .post("", {
-          email: review,
+        .post("http://localhost:8080/api/book/addReview", {
+          bookId: order.bookId,
+          email: order.email,  
+          review: holdReview,
         })
         .then((res) => {
           alert("Review added successfully");
@@ -42,7 +41,7 @@ function ReviewModal({
         </Modal.Header>
         <Modal.Body>
           <Form
-            onSubmit={handleSubmit}
+            
             style={{ width: "330px", textAlign: "left", marginTop: "2" }}
           >
             <Form.Group>
@@ -50,7 +49,7 @@ function ReviewModal({
               <Form.Control
                 type="text"
                 name="review"
-                value={review}
+                value={holdReview}
                 placeholder="Please enter your review here"
                 onChange={(e) => setReview(e.target.value)}
               />
@@ -58,7 +57,7 @@ function ReviewModal({
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" variant="primary">
+          <Button type="submit" onClick={handleSubmit} variant="primary">
             Submit
           </Button>
         </Modal.Footer>
@@ -67,4 +66,4 @@ function ReviewModal({
   );
 }
 
-export default ReviewModal;
+export default GiveReview;
