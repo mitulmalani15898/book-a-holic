@@ -1,3 +1,9 @@
+/**
+ * Filename : Profile.css
+ * Author: Yashvi Gulati (B00900339)
+ * File Purpose: Profile Page CSS
+ */
+
 .profile-container {
   height: calc(100vh - 50px);
 }

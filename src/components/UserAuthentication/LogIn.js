@@ -1,10 +1,16 @@
+/**
+ * Filename : Login.js
+ * Author: Abhinav Rawat (B00895691)
+ * File Purpose: Login
+ */
+
 import { useState, React } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import { useCookies } from "react-cookie";
 import "./UserAuth.css";
 import { useNavigate } from "react-router-dom";
+import axios from "../../axios";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -13,11 +19,13 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cookie, setCookie] = useCookies(["Token", "Email"]);
+  
+  // Backend code to create a new user
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
       axios
-        .post("http://localhost:8080/api/user", {
+        .post("/user", {
           email: email,
           password: password,
         })

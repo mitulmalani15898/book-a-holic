@@ -1,32 +1,47 @@
+/**
+ * Filename : index.js
+ * Author: Yashvi Gulati (B00900339)
+ * File Purpose: Managing Order History
+ */
+
 import "./order-history.css";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import GiveReview from "../Reviews/GiveReview";
-
-const USER_EMAIL="yashvi@dal.ca";
+import { useCookies } from "react-cookie";
+import axios from "../../axios";
 
 function Orders() {
+  const [cookies, setCookies] = useCookies("user");
   const [modalVisible, setModalVisible] = useState(false);
   const [ordersList, setOrdersList] = useState([]);
   const [filteredList, setFilteredList] = useState(ordersList);
   const [sortType, setSortType] = useState("desc");
   const [query, setQuery] = useState("");
 
+  // Extracting email from cookie
+  const USER_EMAIL = cookies.Email;
+
   const toggleReviewModal = () => {
     setModalVisible(!modalVisible);
   };
 
+  // Backend Code to get orders from database (GET)
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/orders/${USER_EMAIL}`).then((res) => {
-      setOrdersList(res.data.data);
-      setFilteredList(res.data.data);
-  
-    });
+    axios
+      .get(`/orders/${USER_EMAIL}`)
+      .then((res) => {
+        setOrdersList(res.data.data);
+        setFilteredList(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   }, []);
 
+  // Search Query Change
   useEffect(() => {
     if (query) {
       let result = ordersList.filter((res) => {
@@ -48,13 +63,16 @@ function Orders() {
     setQuery(value);
   };
 
+  // Function to Sort by Date
   useEffect(() => {
+    // Ascending Order
     const asc = (a, b) => {
       return (
         new Date(a.purchaseDate).getTime() - new Date(b.purchaseDate).getTime()
       );
     };
 
+    // Descending Order
     const desc = (a, b) => {
       return (
         new Date(b.purchaseDate).getTime() - new Date(a.purchaseDate).getTime()
@@ -103,6 +121,8 @@ function Orders() {
           </DropdownButton>
         </div>
       </div>
+
+      {/* Dynamic Orders Generated  */}
       {filteredList.length === 0 && <div>No Orders Found.</div>}
       {filteredList &&
         filteredList.map((res) => (
@@ -111,8 +131,14 @@ function Orders() {
               <p className="order-heading">Order ID:</p>
               <p className="order-content">{res._id}</p>
               <div className="review-button">
-              <div onClick={toggleReviewModal}>Write a Review</div>
-                <GiveReview order = {res} onClose={toggleReviewModal} show={modalVisible} />
+                <div onClick={toggleReviewModal}>Write a Review</div>
+
+                {/* Give Review Component */}
+                <GiveReview
+                  order={res}
+                  onClose={toggleReviewModal}
+                  show={modalVisible}
+                />
               </div>
             </div>
             <div className="order-card">
