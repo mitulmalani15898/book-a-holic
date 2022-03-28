@@ -1,4 +1,9 @@
 export const BASE_URL =
-  process.env.NODE_ENV === "production" ? "" : "http://localhost:8080/";
+  process.env.NODE_ENV === "production"
+    ? "https://bookaholic-backend.herokuapp.com/"
+    : "http://localhost:8080/";
+    
 export const API_BASE_URL =
-  process.env.NODE_ENV === "production" ? "" : "http://localhost:8080/api";
+  process.env.NODE_ENV === "production"
+    ? "https://bookaholic-backend.herokuapp.com/api"
+    : "http://localhost:8080/api";

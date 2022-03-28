@@ -1,17 +1,25 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import { BooksContext } from "../../Providers/BooksProvider";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
+import { BooksContext } from "../../Providers/BooksProvider";
 import AddToCart from "../../static/images/icons/AddCartIcon";
 import { BASE_URL } from "../../utils/constants";
+import DefaultBookImage from "../../static/images/noCoverAvailable.png";
 
 import "./book-card.css";
 
 function BookCard({ book, isIncludedInCart }) {
+  const [cookie] = useCookies(["Token"]);
+  const navigate = useNavigate();
+
   const [isHover, setIsHover] = useState(false);
   const { setCart } = useContext(BooksContext);
 
   const handleAddToCart = (book) => () => {
+    if (!cookie.Token) {
+      navigate("/login");
+    }
     setCart((prev) => [...prev, book]);
   };
 
@@ -35,7 +43,7 @@ function BookCard({ book, isIncludedInCart }) {
         <div className="book-image-wrapper">
           <div className="book-image-cover">
             <img
-              src={`${BASE_URL + imageUrl}`}
+              src={`${BASE_URL + imageUrl}` || DefaultBookImage}
               alt="book-cover"
               className="book-image"
             />
