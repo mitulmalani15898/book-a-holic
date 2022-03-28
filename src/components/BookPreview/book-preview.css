@@ -4,8 +4,6 @@
 
 .preview-modal .modal-body {
   padding: 0;
-  height: max-content !important;
-  overflow: auto;
 }
 
 .react-pdf__Document {
@@ -18,7 +16,7 @@
 
 .react-pdf__Page__canvas {
   width: 100% !important;
-  height: auto;
+  height: auto !important;
 }
 
 .prev-next-button {

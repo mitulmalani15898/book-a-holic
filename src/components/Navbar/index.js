@@ -28,9 +28,9 @@ const NavbarComponent = () => {
   return (
     <Navbar expand="lg">
       <Container>
-        <Navbar.Brand>
+        <NavLink to="/">
           <img alt="logo" src={Logo} width="200" height="50" />
-        </Navbar.Brand>
+        </NavLink>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="main-navbar">
@@ -144,7 +144,7 @@ const NavbarComponent = () => {
                 <FontAwesomeIcon
                   icon={faRightFromBracket}
                   color="#FFF"
-                  className="login-icon"
+                  className="logout-icon"
                 />
                 Log in
               </Nav.Link>

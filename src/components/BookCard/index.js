@@ -1,15 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
-import AddToCart from "../../static/images/AddCartIcon";
+import { BooksContext } from "../../Providers/BooksProvider";
+import AddToCart from "../../static/images/icons/AddCartIcon";
+import { BASE_URL } from "../../utils/constants";
+import DefaultBookImage from "../../static/images/noCoverAvailable.png";
 
 import "./book-card.css";
 
-function BookCard({ book, setIsAdded }) {
-  const [isHover, setIsHover] = useState(false);
+function BookCard({ book, isIncludedInCart }) {
+  const [cookie] = useCookies(["Token"]);
+  const navigate = useNavigate();
 
-  const handleAddToCart = () => {
-    setIsAdded(true);
+  const [isHover, setIsHover] = useState(false);
+  const { setCart } = useContext(BooksContext);
+
+  const handleAddToCart = (book) => () => {
+    if (!cookie.Token) {
+      navigate("/login");
+    }
+    setCart((prev) => [...prev, book]);
+  };
+
+  const handleRemoveFromCart = (book) => () => {
+    setCart((prev) => prev.filter((b) => b._id !== book._id));
   };
 
   const handleMouseEnter = () => {
@@ -20,41 +35,53 @@ function BookCard({ book, setIsAdded }) {
     setIsHover(false);
   };
 
-  const { id, bookName, authorName, price, actualPrice, isFree, coverImage } =
-    book;
+  const { _id, title, author, price, actualPrice, imageUrl } = book;
 
   return (
     <div className="book-card-wrapper">
-      <Link to={`/book/${id}`}>
+      <Link to={`/book/${_id}`}>
         <div className="book-image-wrapper">
           <div className="book-image-cover">
-            <img src={coverImage} alt="book-cover" className="book-image" />
+            <img
+              src={`${BASE_URL + imageUrl}` || DefaultBookImage}
+              alt="book-cover"
+              className="book-image"
+            />
           </div>
         </div>
       </Link>
-      <div className="book-title">{bookName}</div>
-      <div className="book-author">{authorName}</div>
-      {isFree ? (
+      <div className="book-title">{title}</div>
+      <div className="book-author">{author}</div>
+      {price === 0 ? (
         <div className="free-book-tag">FREE</div>
       ) : (
         <div>
-          <span className="actual-book-price">{`$${actualPrice}`}</span>
-          <span className="book-price">{`$${price}`}</span>
+          <span className="actual-book-price">{`$${price}`}</span>
+          <span className="book-price">{`$${actualPrice}`}</span>
         </div>
       )}
 
-      <button
-        className="add-cart-button"
-        onClick={handleAddToCart}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <AddToCart
-          className="add-cart-icon"
-          color={isHover ? "#0166B2" : "#FFF"}
-        />
-        Add To Cart
-      </button>
+      {isIncludedInCart ? (
+        <button
+          className="add-cart-button remove-cart-button"
+          onClick={handleRemoveFromCart(book)}
+        >
+          Remove
+        </button>
+      ) : (
+        <button
+          className="add-cart-button"
+          onClick={handleAddToCart(book)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <AddToCart
+            className="add-cart-icon"
+            color={isHover ? "#0166B2" : "#FFF"}
+          />
+          Add To Cart
+        </button>
+      )}
     </div>
   );
 }

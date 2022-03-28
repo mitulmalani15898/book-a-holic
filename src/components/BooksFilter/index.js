@@ -1,29 +1,52 @@
+import { useContext, useEffect } from "react";
 import Form from "react-bootstrap/Form";
+import { BooksContext } from "../../Providers/BooksProvider";
 
 import "./books-filter.css";
 
+const categoriesList = [
+  "Education",
+  "Science and Technology",
+  "Literature",
+  "Fiction",
+  "Drama",
+  "Research",
+  "Thriller",
+  "Mystery",
+  "Comic Books",
+];
+
 function BooksFilter() {
+  const { getBooks, search, categories, setCategories } =
+    useContext(BooksContext);
+
+  useEffect(() => {
+    getBooks({ categoriesList: categories, searchText: search });
+  }, [categories.length]);
+
+  const handleChange = ({ target: { value } }) => {
+    if (categories.includes(value)) {
+      setCategories((prev) => prev.filter((item) => item !== value));
+    } else {
+      setCategories((prev) => [...prev, value]);
+    }
+  };
+
   return (
     <div className="books-filter-wrapper">
-      <Form.Check inline label="Education" name="bookFilter" type="checkbox" />
-      <Form.Check
-        inline
-        label="Science and Technology"
-        name="bookFilter"
-        type="checkbox"
-      />
-      <Form.Check inline label="Literature" name="bookFilter" type="checkbox" />
-      <Form.Check inline label="Fiction" name="bookFilter" type="checkbox" />
-      <Form.Check inline label="Drama" name="bookFilter" type="checkbox" />
-      <Form.Check inline label="Research" name="bookFilter" type="checkbox" />
-      <Form.Check inline label="Thriller" name="bookFilter" type="checkbox" />
-      <Form.Check inline label="Mystery" name="bookFilter" type="checkbox" />
-      <Form.Check
-        inline
-        label="Comic books"
-        name="bookFilter"
-        type="checkbox"
-      />
+      {categoriesList.map((category, i) => (
+        <Form.Check
+          key={i}
+          inline
+          type="checkbox"
+          id={category}
+          label={category}
+          value={category}
+          name="bookFilter"
+          checked={categories.includes(category)}
+          onChange={handleChange}
+        />
+      ))}
     </div>
   );
 }

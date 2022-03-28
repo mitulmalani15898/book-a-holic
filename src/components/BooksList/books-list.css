@@ -1,3 +1,7 @@
+.books-container {
+  height: 100vh;
+}
+
 .books-list-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -7,8 +11,11 @@
   padding-bottom: 50px;
 }
 
-.alert-message {
-  text-align: left;
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 80px 0;
 }
 
 .btn-close:focus {
