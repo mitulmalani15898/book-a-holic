@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import "./UserAuth.css";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Login = (props) => {
   var userEmail = "";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setCookie] = useCookies(["user"]);
+  const [cookie, setCookie] = useCookies(["Token", "Email"]);
   let handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -26,19 +26,19 @@ const Login = (props) => {
           userEmail = res.data.data.email;
           setCookie("Token", token, { path: "/" });
           setCookie("Email", userEmail, { path: "/" });
-          navigate("/")
+          navigate("/");
         })
         .catch((error) => {
           alert("Invalid Credentials. Please try again!");
         });
     } catch (err) {
       alert("Could not send the Request. Please try again!");
-      navigate("/login")
+      navigate("/login");
     }
   };
   return (
     <div className="login-container flex-column">
-      <hr/>
+      <hr />
       <h3>Account Login</h3>
       <hr style={{ width: "50%", border: "1px solid black" }} />
       <Form
@@ -68,7 +68,7 @@ const Login = (props) => {
         <div className="button-container" type="submit" onClick={handleSubmit}>
           Login
         </div>
-        <hr style={{ width: "0%" }}/>
+        <hr style={{ width: "0%" }} />
         <p>
           {" "}
           Forgot your password? <Link to="/forgot">Click here</Link>{" "}
@@ -76,7 +76,7 @@ const Login = (props) => {
         Not Registered? &nbsp;
         <Link to="/signup">Sign Up</Link>
       </Form>
-      <hr style={{ width: "0%" }}/>
+      <hr style={{ width: "0%" }} />
     </div>
   );
 };

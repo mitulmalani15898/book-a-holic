@@ -2,7 +2,9 @@ import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
+import { useCookies } from "react-cookie";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import {
   faArrowDownAZ,
   faBook,
@@ -17,6 +19,12 @@ import Logo from "../../static/images/logo.png";
 import "./navbar.css";
 
 const NavbarComponent = () => {
+  let [cookie, setCookie, removeCookie] = useCookies(["Token", "Email"]);
+  const navigate = useNavigate();
+  const logOut = () => {
+    removeCookie("Token");
+    removeCookie("Email");
+  };
   return (
     <Navbar expand="lg">
       <Container>
@@ -52,73 +60,95 @@ const NavbarComponent = () => {
               />
               Books
             </NavLink>
-            <NavLink
-              to="/orders"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-nav-link" : "nav-link"
-              }
-            >
-              <FontAwesomeIcon
-                icon={faArrowDownAZ}
-                color="#FFF"
-                className="logout-icon"
-              />
-              Orders
-            </NavLink>
-            <NavLink
-              to="/profile"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-nav-link" : "nav-link"
-              }
-            >
-              <FontAwesomeIcon
-                icon={faUser}
-                color="#FFF"
-                className="logout-icon"
-              />
-              Profile
-            </NavLink>
-            <NavLink
-              to="/contact-us"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-nav-link" : "nav-link"
-              }
-            >
-              <FontAwesomeIcon
-                icon={faMessage}
-                color="#FFF"
-                className="logout-icon"
-              />
-              Contact Us
-            </NavLink>
-            <NavLink
-              to="/cart"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-nav-link" : "nav-link"
-              }
-            >
-              <FontAwesomeIcon
-                icon={faCartShopping}
-                color="#FFF"
-                className="logout-icon"
-              />
-              Cart
-            </NavLink>
+            {cookie.Token ? (
+              <>
+                <NavLink
+                  to="/orders"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active-nav-link" : "nav-link"
+                  }
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowDownAZ}
+                    color="#FFF"
+                    className="logout-icon"
+                  />
+                  Orders
+                </NavLink>
+                <NavLink
+                  to="/profile"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active-nav-link" : "nav-link"
+                  }
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    color="#FFF"
+                    className="logout-icon"
+                  />
+                  Profile
+                </NavLink>
+                <NavLink
+                  to="/contact-us"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active-nav-link" : "nav-link"
+                  }
+                >
+                  <FontAwesomeIcon
+                    icon={faMessage}
+                    color="#FFF"
+                    className="logout-icon"
+                  />
+                  Contact Us
+                </NavLink>
+                <NavLink
+                  to="/cart"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active-nav-link" : "nav-link"
+                  }
+                >
+                  <FontAwesomeIcon
+                    icon={faCartShopping}
+                    color="#FFF"
+                    className="logout-icon"
+                  />
+                  Cart
+                </NavLink>{" "}
+              </>
+            ) : null}
           </Nav>
           <Nav>
-            <Nav.Link
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-nav-link" : "nav-link"
-              }
-            >
-              <FontAwesomeIcon
-                icon={faRightFromBracket}
-                color="#FFF"
-                className="logout-icon"
-              />
-              Log out
-            </Nav.Link>
+            {cookie.Token ? (
+              <Nav.Link
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active-nav-link" : "nav-link"
+                }
+                onClick={() => logOut()}
+              >
+                <FontAwesomeIcon
+                  icon={faRightFromBracket}
+                  color="#FFF"
+                  className="logout-icon"
+                />
+                Log out
+              </Nav.Link>
+            ) : (
+              <Nav.Link
+                to="/login"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active-nav-link" : "nav-link"
+                }
+                onClick={() => navigate("/login")}
+              >
+                <FontAwesomeIcon
+                  icon={faRightFromBracket}
+                  color="#FFF"
+                  className="login-icon"
+                />
+                Log in
+              </Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>
