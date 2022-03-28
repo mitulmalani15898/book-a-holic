@@ -2,17 +2,39 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 import "./UserAuth.css";
+import { useNavigate } from "react-router-dom";
 
 const Forgot = (props) => {
+  const navigate = useNavigate();
+  let [email, setEmail] = React.useState();
   const handleSubmit = (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
+      axios
+        .post(`http://localhost:8080/api/user/forgot/${email}`, {
+          email: email,
+        })
+        .then((res) => {
+          alert("Email sent!!");
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    } catch (err) {
+      alert("Request error caught.");
+      // navigate to login page.
+    }
   };
 
+  const handleChange = (e) => {
+    setEmail(e.target.value);
+  };
   return (
     <div className="forgot-container flex-column">
       <h3>Account Recovery</h3>
-      <hr style={{ width: "50%", border: "1px solid black" }} />
+      <hr style={{ width: "20%", border: "1px solid black" }} />
       <Form style={{ width: "330px", textAlign: "left", marginTop: "2" }}>
         <Form.Group>
           <Form.Label>User ID</Form.Label>
@@ -20,6 +42,8 @@ const Forgot = (props) => {
             type="text"
             name="email"
             placeholder="Please enter your email address"
+            value={email}
+            onChange={handleChange}
           />
         </Form.Group>
         <div className="submit-container d-flex mt-3 flex-column justify-content-center">
@@ -33,7 +57,6 @@ const Forgot = (props) => {
             Reset!{" "}
           </Button>
         </div>
-        <hr style={{ width: "0%" }}/>
         <p>
           {" "}
           Log into your Account? <Link to="/Login">Click here</Link>{" "}
