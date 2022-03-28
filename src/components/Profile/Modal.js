@@ -1,3 +1,10 @@
+/**
+ * Filename : Modal.js
+ * Author: Yashvi Gulati (B00900339)
+ * File Purpose: Creates Modal for pop up messages
+ */
+
+
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 

@@ -1,10 +1,18 @@
+/**
+ * Filename : index.js
+ * Author: Yashvi Gulati (B00900339)
+ * File Purpose: Managing the user general profile
+ */
+
 import { useState, useRef, useEffect } from "react";
 import { HouseFill, LockFill, PencilSquare } from "react-bootstrap-icons";
 import AccountSetting from "./AccountSetting";
 import "./Profile.css";
 import ModalComponent from "./Modal";
-import axios from "axios";
+import { useCookies } from "react-cookie";
+import axios from "../../axios";
 
+// User Model
 const DEF_USER_DETAILS = {
   date: "",
   _id: "",
@@ -16,10 +24,11 @@ const DEF_USER_DETAILS = {
   password: "",
 };
 
+// Preferences stored in Array.
 const PREFERENCES = ["Non Fiction", "Fiction", "Drama", "Mythology"];
-const USER_EMAIL = "yashvi@dal.ca"; // TODO use getCookie('email')
 
 function Profile() {
+  const [cookies, setCookies] = useCookies("user");
   const [selectedDiv, updateSelectedDiv] = useState(1);
   const [userDetails, updateUserDetails] = useState(DEF_USER_DETAILS);
   const [inputStates, updateInputState] = useState(DEF_USER_DETAILS);
@@ -27,12 +36,17 @@ function Profile() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [profilePic, setProfilePic] = useState(null);
 
+  // Extracting email from cookie
+  const USER_EMAIL = cookies.Email;
+
   let profilePicURL = require("../../static/images/default-profile-pic.jpeg");
 
+  // Setting Profile picture from database
   if (userDetails.avatar) {
     profilePicURL = userDetails.avatar;
   }
 
+  // If no picture present in database, apply default
   if (profilePic) {
     profilePicURL = profilePic;
   }
@@ -45,6 +59,10 @@ function Profile() {
     }
   };
 
+  /**
+   * Function to convert a file into base64
+   * Reference Link : https://stackoverflow.com/questions/36280818/how-to-convert-file-to-base64-in-javascript
+   */
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -53,11 +71,11 @@ function Profile() {
       reader.onerror = (error) => reject(error);
     });
 
+  // Backend Request to upload profile picture (POST)
   const handleProfilePicChange = async (e) => {
     if (e.target.files[0]) {
       const base64 = await getBase64(e.target.files[0]);
-      axios("http://localhost:8080/api/user/upload-profile", {
-        //TODO: Change url
+      axios("/user/upload-profile", {
         method: "POST",
         params: { email: USER_EMAIL },
         data: {
@@ -74,18 +92,19 @@ function Profile() {
   };
   const [error, updateErrorState] = useState(errorSet);
 
+  // Function to check checked preference states
   const isItemChecked = (item) => {
     const pregArr = inputStates?.preferences?.split(",");
     return pregArr.includes(item);
   };
 
+  // Function to handle preference change
   const handlePrefChange = (e) => {
     const item = e.target.value;
     const pref = inputStates.preferences.split(",").filter((item) => {
       return item !== "";
     });
 
-    console.log("pref", pref);
     const index = pref.indexOf(item);
     if (index === -1) pref.push(item);
     else pref.splice(index, 1);
@@ -103,6 +122,12 @@ function Profile() {
     updateInputState({ ...inputStates, [e.target.name]: e.target.value });
   };
 
+  /**
+   * Function to validate all the input fields
+   *  - First Name, Last Name : cannot contain digits, mandatory
+   *
+   * @returns false if error exists
+   */
   const handleValidate = () => {
     let isError = false;
 
@@ -133,6 +158,7 @@ function Profile() {
     return isError;
   };
 
+  // Backend Request to edit user profile (PUT)
   const handleGeneralUpdate = async (e) => {
     e.preventDefault();
     if (handleValidate() === true) return;
@@ -142,31 +168,35 @@ function Profile() {
     });
 
     axios
-      .put("http://localhost:8080/api/user/edit-general-profile", inputStates) // TODO: Change url
+      .put("/user/edit-general-profile", inputStates)
       .then((res) => {
         console.log(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
-
-    console.log(userDetails);
-    console.log(inputStates);
 
     setIsModalVisible(true);
     setDisabled(true);
   };
 
+  // Enabling/Disabling of Edit Button
   const handleEditChange = () => {
     setDisabled(!isDisabled);
   };
 
+  // To get existing details from the database (GET)
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/user/profile", {
-        // TODO: Change url
+      .get("/user/profile", {
         params: { email: USER_EMAIL },
       })
       .then((res) => {
         updateUserDetails({ ...res.data.data });
         updateInputState(res.data.data);
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
   }, []);
 
@@ -176,6 +206,7 @@ function Profile() {
 
   return (
     <div className="profile-container">
+      {/* Modal for Profile Update Success Message */}
       <ModalComponent
         show={isModalVisible}
         onClose={() => {
@@ -310,6 +341,7 @@ function Profile() {
                 <div class="form-group">
                   <label>Preferences</label>
 
+                  {/* Creating fields dynamically */}
                   {PREFERENCES.map((item, idx) => {
                     return (
                       <div key={idx} class="form-check">
