@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
+import UserDashBoard from "./components/UserDashBoard";
 import Books from "./pages/Books";
 import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
@@ -14,6 +15,7 @@ import GetReview from "./components/Reviews/GetReview";
 import Recovery from "./components/UserAuthentication/Recovery";
 import { BooksProvider } from "./Providers/BooksProvider";
 
+
 import "./App.css";
 
 export default function App() {
@@ -25,7 +27,7 @@ export default function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Books />} />
+            <Route path="/" element={<UserDashBoard />} />
             <Route path="/contact-us" element={<Books />} />
             <Route path="/books" element={<Books />} />
             <Route path="/recovery/:token/:email" element={<Recovery />} />
@@ -53,6 +55,7 @@ export default function App() {
           </Routes>
         </BrowserRouter>
       </BooksProvider>
+
     </div>
   );
 }
