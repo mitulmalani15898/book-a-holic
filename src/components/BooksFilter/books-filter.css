@@ -1,4 +1,7 @@
-/* Author: Mitul Pravinbhai Malani (B00869519) */
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for BooksFilter component
+ */
 .books-filter-wrapper {
   margin-bottom: 20px;
   display: flex;
@@ -7,10 +10,11 @@
 }
 
 .form-check-input:checked {
-    background-color: #0166B2 !important;
-    border-color: #0166B2 !important;
+  background-color: #0166b2 !important;
+  border-color: #0166b2 !important;
 }
 
-.form-check-input:active, .form-check-input:focus {
-    box-shadow: 0 0 0 0.25rem #0166B240 !important;
+.form-check-input:active,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem #0166b240 !important;
 }

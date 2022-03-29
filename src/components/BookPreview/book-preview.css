@@ -1,4 +1,7 @@
-/* Author: Mitul Pravinbhai Malani (B00869519) */
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for BooksPreview modal component
+ */
 .preview-modal .modal-dialog {
   max-width: 614px;
 }

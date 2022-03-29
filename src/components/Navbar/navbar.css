@@ -1,9 +1,12 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for Navbar component
+ */
 .navbar {
   background-color: #0166b2 !important;
   padding: 0 !important;
 }
 
-/* Author: Mitul Pravinbhai Malani (B00869519) */
 .navbar-brand {
   padding-top: 0 !important;
   padding-bottom: 0 !important;

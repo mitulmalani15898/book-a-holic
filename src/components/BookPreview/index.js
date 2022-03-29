@@ -1,4 +1,7 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * BooksPreview component, which uses react-pdf package for displaying PDF preview in Modal
+ */
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { pdfjs, Document, Page } from "react-pdf";
@@ -13,6 +16,7 @@ const BookPreview = ({ show, handleClose, bookPdf, preview }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  // this function sets number of pages to 10 if preview, actual number of pages otherwise
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(preview ? 10 : numPages);
   };

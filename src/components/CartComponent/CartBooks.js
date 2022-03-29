@@ -1,4 +1,7 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * Listings of books added into the cart component
+ */
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,11 +13,7 @@ import { BASE_URL } from "../../utils/constants";
 import DefaultBook from "../../static/images/DefaultBook.png";
 
 const CartBooks = () => {
-  const { cart, setCart } = useContext(BooksContext);
-
-  const handleRemoveFromCart = (book) => () => {
-    setCart((prev) => prev.filter((b) => b._id !== book._id));
-  };
+  const { cart, handleRemoveFromCart } = useContext(BooksContext);
 
   return (
     <div className="cart-header">
@@ -23,7 +22,12 @@ const CartBooks = () => {
         <div>{cart.length} Books</div>
       </div>
       <div className="cart-books">
-        {!!cart.length ? (
+        {!cart.length ? (
+          <Alert variant="info">
+            Please click on link below to explore Books Catalogue and add some
+            books to the cart.
+          </Alert>
+        ) : (
           cart.map((item) => (
             <div className="cart-book-wrapper" key={item._id}>
               <div className="cart-book-image-cover">
@@ -44,9 +48,7 @@ const CartBooks = () => {
                   <div className="cart-book-author">{item.category}</div>
                   <div>
                     {item.price === 0 ? (
-                      <>
-                        <div className="free-book-tag">FREE</div>
-                      </>
+                      <div className="free-book-tag">FREE</div>
                     ) : (
                       <>
                         <span className="actual-book-price">${item.price}</span>
@@ -64,11 +66,6 @@ const CartBooks = () => {
               </div>
             </div>
           ))
-        ) : (
-          <Alert variant="info">
-            Please click on link below to explore Books Catalogue and add some
-            books to the cart.
-          </Alert>
         )}
       </div>
       <Link to="/books" className="books-link">

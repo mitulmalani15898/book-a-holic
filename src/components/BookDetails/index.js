@@ -1,4 +1,7 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * BooksDetails component, which shows details of book along with preview
+ */
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
@@ -21,7 +24,8 @@ const BookDetails = () => {
   const { id } = useParams();
   const {
     cart,
-    setCart,
+    handleAddToCart,
+    handleRemoveFromCart,
     books: { data, loading } = {},
   } = useContext(BooksContext);
 
@@ -30,26 +34,18 @@ const BookDetails = () => {
   const [isHover, setIsHover] = useState(false);
   const [previewHover, setPreviewHover] = useState(false);
 
+  // sets book if page refreshed explicitly
   useEffect(() => {
     if (data.length) {
       setBook(data.find((book) => book._id === id));
     }
   }, [data.length]);
 
-  const handleAddToCart = (book) => () => {
-    setCart((prev) => [...prev, book]);
-  };
-
-  const handleRemoveFromCart = (book) => () => {
-    setCart((prev) => prev.filter((b) => b._id !== book._id));
-  };
-
   const handleShowPreview = () => {
     setShowPreview((prev) => !prev);
   };
 
   const {
-    _id,
     title,
     author,
     price,

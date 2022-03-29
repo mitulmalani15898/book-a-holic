@@ -1,8 +1,11 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * Books filter by categories component
+ */
 import { useContext, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import { BooksContext } from "../../Providers/BooksProvider";
 
+import { BooksContext } from "../../Providers/BooksProvider";
 import "./books-filter.css";
 
 const categoriesList = [
@@ -21,6 +24,7 @@ function BooksFilter() {
   const { getBooks, search, categories, setCategories } =
     useContext(BooksContext);
 
+  // calls getBooks api when categories are checked/unchecked
   useEffect(() => {
     getBooks({ categoriesList: categories, searchText: search });
   }, [categories.length]);

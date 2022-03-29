@@ -1,8 +1,10 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * This component works as a wrapper for Cart page
+ */
 import Container from "react-bootstrap/Container";
 
 import CartComponent from "../../components/CartComponent";
-import "./cart-main.css";
 
 const Cart = () => {
   return (
