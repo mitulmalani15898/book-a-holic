@@ -21,7 +21,7 @@ const Forgot = (props) => {
     try {
       e.preventDefault();
       axios
-        .post(`/user/forgot/${email}`, {
+        .post(`https://bookaholic-backend.herokuapp.com/api/user/forgot/${email}`, {
           email: email,
         })
         .then((res) => {
