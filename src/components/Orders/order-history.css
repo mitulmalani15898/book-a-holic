@@ -1,3 +1,9 @@
+/**
+ * Filename : order-history.css
+ * Author: Yashvi Gulati (B00900339)
+ * File Purpose: Order History CSS
+ */
+
 body {
   background-color: #f1f4f7 !important;
 }
@@ -14,6 +20,7 @@ body {
   padding-bottom: 0%;
   border: 1px solid rgb(223, 223, 223);
   color: rgb(44, 44, 44);
+  font-family: IbmPlex;
 }
 
 .order-heading {
@@ -22,6 +29,7 @@ body {
   margin: 0%;
   margin-bottom: 0%;
   display: flex;
+  font-family: IbmPlex Medium;
 }
 
 .order-content {

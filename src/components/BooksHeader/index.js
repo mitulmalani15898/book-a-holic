@@ -1,14 +1,22 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * Books page haeder, which contains search books by name and author name
+ */
 import { useContext, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import debounce from "lodash.debounce";
 
-import "./books-header.css";
 import { BooksContext } from "../../Providers/BooksProvider";
+import "./books-header.css";
 
 function BooksHeader() {
   const { getBooks, search, setSearch, categories } = useContext(BooksContext);
 
+  /**
+   * search books api call after each second,
+   * used useCallback so that this function is initialized sigle time and reused in each render
+   */
   const debouncedSearch = useCallback(
     debounce(
       (value, categories) =>

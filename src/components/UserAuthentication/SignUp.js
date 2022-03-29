@@ -1,10 +1,16 @@
+/**
+ * Filename : SignUp.js
+ * Author: Abhinav Rawat (B00895691)
+ * File Purpose: User Signup
+ */
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import axios from "axios";
 import Login from "./LogIn";
 import { useNavigate } from "react-router-dom";
 import "./UserAuth.css";
+import axios from "../../axios";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -24,7 +30,7 @@ const SignUp = () => {
     } else {
       try {
         axios
-          .post("http://localhost:8080/api/user/add", {
+          .post("/user/add", {
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -178,7 +184,7 @@ const SignUp = () => {
               type="submit"
               onClick={handleSubmit}
             >
-              Login
+              Signup
             </div>
             <br/>
             Already Registered? &nbsp;

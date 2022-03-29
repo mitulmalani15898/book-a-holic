@@ -23,8 +23,8 @@ export default function App() {
 
   return (
     <div className="App">
-      <BooksProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <BooksProvider>
           <Navbar />
           <Routes>
             <Route path="/" element={<UserDashBoard />} />
@@ -53,9 +53,8 @@ export default function App() {
               </>
             )}
           </Routes>
-        </BrowserRouter>
-      </BooksProvider>
-
+        </BooksProvider>
+      </BrowserRouter>
     </div>
   );
 }

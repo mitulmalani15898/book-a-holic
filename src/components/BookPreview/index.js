@@ -1,3 +1,7 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * BooksPreview component, which uses react-pdf package for displaying PDF preview in Modal
+ */
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { pdfjs, Document, Page } from "react-pdf";
@@ -12,6 +16,7 @@ const BookPreview = ({ show, handleClose, bookPdf, preview }) => {
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
 
+  // this function sets number of pages to 10 if preview, actual number of pages otherwise
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(preview ? 10 : numPages);
   };
@@ -27,9 +32,13 @@ const BookPreview = ({ show, handleClose, bookPdf, preview }) => {
   return (
     <Modal show={show} onHide={handleClose} className="preview-modal">
       <Modal.Header closeButton>
-        Page {pageNumber} of {numPages}
+        {numPages && (
+          <>
+            Page {pageNumber} of {numPages}
+          </>
+        )}
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="h-100">
         <Document
           file={`${BASE_URL + bookPdf}`}
           onLoadSuccess={onDocumentLoadSuccess}
@@ -37,14 +46,17 @@ const BookPreview = ({ show, handleClose, bookPdf, preview }) => {
           <Page pageNumber={pageNumber} />
         </Document>
       </Modal.Body>
-      <Modal.Footer>
-        <button className="prev-next-button" onClick={handlePreviousClick}>
-          Prev
-        </button>
-        <button className="prev-next-button" onClick={handleNextClick}>
-          Next
-        </button>
-      </Modal.Footer>
+
+      {numPages && (
+        <Modal.Footer>
+          <button className="prev-next-button" onClick={handlePreviousClick}>
+            Prev
+          </button>
+          <button className="prev-next-button" onClick={handleNextClick}>
+            Next
+          </button>
+        </Modal.Footer>
+      )}
     </Modal>
   );
 };

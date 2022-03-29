@@ -1,36 +1,40 @@
+/**
+ * Filename : GiveReview.js
+ * Author: Abhinav Rawat (B00895691)
+ * File Purpose: To give book reviews
+ */
+
 import { useState, React } from "react";
 import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "../../axios";
 
-function GiveReview({
-  onClose,
-  show,
-  order
-}) {
+function GiveReview({ onClose, show, order }) {
   const [holdReview, setReview] = useState("");
 
   const navigate = useNavigate();
+
+  // Backend Code to write a book review
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       axios
-        .post("http://localhost:8080/api/book/addReview", {
+        .post("/book/addReview", {
           bookId: order.bookId,
-          email: order.email,  
+          email: order.email,
           review: holdReview,
         })
         .then((res) => {
           alert("Review added successfully");
-          navigate("/")
+          navigate("/");
         })
         .catch((error) => {
           alert("Could not add the review. Please try again later!");
         });
     } catch (err) {
       alert("Server error.Could not add the review. Please try again later!");
-      navigate("/")
+      navigate("/");
     }
   };
   return (
@@ -40,10 +44,7 @@ function GiveReview({
           <Modal.Title>Review the book!!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form
-            
-            style={{ width: "330px", textAlign: "left", marginTop: "2" }}
-          >
+          <Form style={{ width: "330px", textAlign: "left", marginTop: "2" }}>
             <Form.Group>
               <Form.Label></Form.Label>
               <Form.Control

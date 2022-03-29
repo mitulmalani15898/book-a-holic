@@ -1,39 +1,20 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * BookCard component, which represents single book card in the grid of books
+ */
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 import { BooksContext } from "../../Providers/BooksProvider";
 import AddToCart from "../../static/images/icons/AddCartIcon";
 import { BASE_URL } from "../../utils/constants";
-import DefaultBookImage from "../../static/images/noCoverAvailable.png";
+import DefaultBook from "../../static/images/DefaultBook.png";
 
 import "./book-card.css";
 
 function BookCard({ book, isIncludedInCart }) {
-  const [cookie] = useCookies(["Token"]);
-  const navigate = useNavigate();
-
   const [isHover, setIsHover] = useState(false);
-  const { setCart } = useContext(BooksContext);
-
-  const handleAddToCart = (book) => () => {
-    if (!cookie.Token) {
-      navigate("/login");
-    }
-    setCart((prev) => [...prev, book]);
-  };
-
-  const handleRemoveFromCart = (book) => () => {
-    setCart((prev) => prev.filter((b) => b._id !== book._id));
-  };
-
-  const handleMouseEnter = () => {
-    setIsHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHover(false);
-  };
+  const { handleAddToCart, handleRemoveFromCart } = useContext(BooksContext);
 
   const { _id, title, author, price, actualPrice, imageUrl } = book;
 
@@ -43,9 +24,13 @@ function BookCard({ book, isIncludedInCart }) {
         <div className="book-image-wrapper">
           <div className="book-image-cover">
             <img
-              src={`${BASE_URL + imageUrl}` || DefaultBookImage}
+              src={`${BASE_URL + imageUrl}`}
               alt="book-cover"
               className="book-image"
+              onError={({ currentTarget }) => {
+                currentTarget.onError = null;
+                currentTarget.src = DefaultBook;
+              }}
             />
           </div>
         </div>
@@ -72,8 +57,8 @@ function BookCard({ book, isIncludedInCart }) {
         <button
           className="add-cart-button"
           onClick={handleAddToCart(book)}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
           <AddToCart
             className="add-cart-icon"

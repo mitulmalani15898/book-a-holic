@@ -1,3 +1,4 @@
+// Author: Mitul Pravinbhai Malani (B00869519)
 const PreviewIcon = (props) => {
   return (
     <svg

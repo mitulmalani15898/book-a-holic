@@ -1,19 +1,27 @@
+/**
+ * Filename : Forgot.js
+ * Author: Abhinav Rawat (B00895691)
+ * File Purpose: Forget Password
+ */
+
 import React from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 import "./UserAuth.css";
 import { useNavigate } from "react-router-dom";
+import axios from "../../axios";
 
 const Forgot = (props) => {
   const navigate = useNavigate();
   let [email, setEmail] = React.useState();
+  
+  // Backend POST call for forget password
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
       axios
-        .post(`http://localhost:8080/api/user/forgot/${email}`, {
+        .post(`/user/forgot/${email}`, {
           email: email,
         })
         .then((res) => {

@@ -1,3 +1,7 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for BooksHeader component
+ */
 .books-header {
   display: flex;
   justify-content: flex-end;

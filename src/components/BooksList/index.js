@@ -1,3 +1,7 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * Listings of books on Books page
+ */
 import { useContext } from "react";
 import Alert from "react-bootstrap/Alert";
 import Spinner from "react-bootstrap/Spinner";
@@ -23,7 +27,12 @@ function BooksList() {
   return (
     <div className="books-wrapper">
       {error && <Alert variant="danger">{error}</Alert>}
-      {!!booksData.length ? (
+      {!booksData.length ? (
+        <Alert variant="info" align="center">
+          There are no books available based on given search or filter value at
+          the moment.
+        </Alert>
+      ) : (
         <div className="books-list-wrapper">
           {booksData.map((book) => (
             <BookCard
@@ -33,11 +42,6 @@ function BooksList() {
             />
           ))}
         </div>
-      ) : (
-        <Alert variant="info" align="center">
-          There are no books available based on given search or filter value at
-          the moment.
-        </Alert>
       )}
     </div>
   );

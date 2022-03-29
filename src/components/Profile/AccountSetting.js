@@ -1,37 +1,36 @@
+/**
+ * Filename : AccountSetting.js
+ * Author: Yashvi Gulati (B00900339)
+ * File Purpose: Managing the user account profile
+ */
+
 import "./Profile.css";
 import { KeyFill, Trash } from "react-bootstrap-icons";
 import { useState, useRef } from "react";
 import ModalComponent from "./Modal";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-// const DEF_USER_ACCOUNT_DETAILS = {
-//   email: "ashley.bratt@gmail.com",
-//   password: "Ashley@123",
-// };
+import axios from "../../axios";
 
 const errorField = {
   errorCurrentPassword: "",
   errorNewPassword: "",
 };
 
-// const userAccInput = {
-//   currentPassword: "",
-//   newPassword: "",
-// };
-
 function AccountSetting({ userDetails }) {
-  const [accDetails, updateAccDetails] = useState(userDetails); //input
+  // Updating Account Details sent by Profile using props
+  const [accDetails, updateAccDetails] = useState(userDetails);
   const [userAccDetails, updateUserAccDetails] = useState(userDetails);
   const [accountError, updateAccError] = useState(errorField);
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const passRef = useRef("");
   const newPasswordRef = useRef("");
 
+  // Modal States
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [isModalVisible2, setIsModalVisible2] = useState(false);
   const navigate = useNavigate();
 
+  // Updating States on Form
   const handleAccountInput = (e) => {
     updateUserAccDetails({
       ...userAccDetails,
@@ -39,10 +38,22 @@ function AccountSetting({ userDetails }) {
     });
   };
 
+  // Validation Function
+  /**
+   * New Password should atleast contain:
+   *    - min 8 digits
+   *    - 1 uppercase
+   *    - 1 lowercase
+   *    - 1 special character
+   *    - 1 number
+   * @returns true if error is present
+   */
   const handleAccValidation = () => {
     let tempError = {};
     let isPasswordValid = true;
     const { currentPassword, newPassword } = userAccDetails;
+
+    // Password Validation
     const isNewPasswordValid = RegExp(
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%&*_])[A-Za-z0-9!@#$%&*_]{8,}$/
     ).test(newPassword);
@@ -71,22 +82,23 @@ function AccountSetting({ userDetails }) {
     return isPasswordValid;
   };
 
+  // Backend Request for Change Password (UPDATE) on Submit
   const handleAccUpdate = (e) => {
     e.preventDefault();
     if (handleAccValidation() === false) return;
 
     axios
-      .put("http://localhost:8080/api/user/edit-general-profile", {
+      .put("/user/edit-general-profile", {
         password: userAccDetails.newPassword,
         email: userAccDetails.email,
       })
       .then((res) => {
-        console.log(res.data.data);
         if (newPasswordRef.current) newPasswordRef.current.value = "";
         if (passRef.current) passRef.current.value = "";
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
-
-    console.log(accDetails, userAccDetails);
 
     updateAccDetails({ ...accDetails, password: userAccDetails.newPassword });
     setIsModalVisible2(true);
@@ -152,6 +164,7 @@ function AccountSetting({ userDetails }) {
           </div>
         </div>
         <div className="account-btn-container">
+          {/* Modal Component for Password Change */}
           <ModalComponent
             show={isModalVisible2}
             onClose={() => {
@@ -166,6 +179,8 @@ function AccountSetting({ userDetails }) {
           >
             <KeyFill /> &nbsp; Change Password
           </div>
+
+          {/* Modal Component for Delete Account */}
           <ModalComponent
             show={isModalVisible}
             onClose={() => {
@@ -174,14 +189,10 @@ function AccountSetting({ userDetails }) {
             showActionButton={true}
             title={"Are you sure?"}
             onActionClick={() => {
-              axios
-                .delete(
-                  "http://localhost:8080/api/user/delete",
-                  userDetails.email
-                )
-                .then((res) => {
-                  navigate("/");
-                });
+              // Backend Request for account deactivation (DELETE)
+              axios.delete("/user/delete", userDetails.email).then((res) => {
+                navigate("/");
+              });
             }}
             buttonActionText={"Confirm"}
             desc={"Are you sure, you wish to delete the account?"}

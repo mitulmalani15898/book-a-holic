@@ -1,3 +1,13 @@
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for cart page and components
+ */
+.cart-container {
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+}
+
 .cart-main-wrapper {
   height: 100%;
   width: 1000px;
@@ -12,23 +22,35 @@
   display: flex;
   flex-direction: column;
   width: 68%;
+  margin-right: 20px;
 }
 
 .cart-books {
-  padding: 10px 20px 10px 10px;
+  padding: 10px;
   overflow-y: scroll;
 }
 
 .cart-book-wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.book-details-delete-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.book-details-wrapper {
+  display: flex;
 }
 
 .cart-book-image-cover {
   max-height: 180px;
   height: 180px;
+  margin: 0 40px 0 20px;
 }
 
 .cart-book-image {
@@ -44,7 +66,6 @@
   font-size: 16px;
   line-height: 1.1;
   text-transform: uppercase;
-  margin: 10px 0 0;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -66,6 +87,7 @@
   font-size: 24px;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 10px;
   border-bottom: 3px solid #0166b2;
   color: #0166b2;
@@ -75,6 +97,7 @@
   height: 20px;
   width: 20px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .books-link {
@@ -93,10 +116,11 @@
 }
 
 .cart-order-summary {
+  min-width: 250px;
   width: 27%;
-  height: 80%;
   border: 1px solid #0166b2;
   padding: 10px;
+  margin-bottom: 15px;
 }
 
 .order-summary-title {
@@ -116,7 +140,7 @@
 .order-summary-item {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 20px 20px 100px;
 }
 
 .apply-promo-button {
@@ -171,4 +195,42 @@
 
 .checkout-button:hover svg {
   color: #0166b2;
+}
+
+@media only screen and (max-width: 992px) {
+  .cart-book-image-cover {
+    margin: 0 20px 0 0;
+  }
+  .cart-remove-book-icon {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .cart-main-wrapper {
+    display: unset;
+    width: 100%;
+    height: max-content;
+  }
+  .cart-header {
+    width: 100%;
+  }
+  .cart-order-summary {
+    max-width: 100%;
+    margin: 10px auto;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .cart-book-wrapper {
+    flex-direction: column;
+  }
+  .book-details-delete-wrapper {
+    margin: 20px;
+    justify-content: space-between;
+    width: 100%;
+  }
+   .cart-order-summary {
+    min-width: 100%;
+  }
 }

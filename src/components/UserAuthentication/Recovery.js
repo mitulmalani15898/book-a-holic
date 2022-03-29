@@ -1,9 +1,15 @@
+/**
+ * Filename : Recovery.js
+ * Author: Abhinav Rawat (B00895691)
+ * File Purpose: Password Recovery
+ */
+
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import axios from "axios";
 import "./UserAuth.css";
 import { useCookies } from "react-cookie";
+import axios from "../../axios";
 
 const Recovery = (props) => {
   const [cookie, setCookie] = useCookies(["Token", "Email"]);
@@ -19,19 +25,20 @@ const Recovery = (props) => {
         window.location.href.split("/").length - 1
       ];
 
+    // Backend API call for password recovery
     try {
       axios
-        .post(`http://localhost:8080/api/user/recovery/${token}/${email}`, {
+        .post(`/user/recovery/${token}/${email}`, {
           password: password,
         })
         .then((res) => {
           alert("Password updated successfully!");
         })
         .catch((error) => {
-          alert(error + "omgsgasglasnkfl");
+          alert(error);
         });
     } catch (err) {
-      alert("Request error caught. Please try againaaaaaaaaaaa!");
+      alert("Request error caught. Please try again!");
     }
   };
 
