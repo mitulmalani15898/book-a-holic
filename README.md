@@ -1,5 +1,7 @@
 # Project: Group 3
 
+Bookaholic : Books at your fingertips is a web-based eBook store where users can search for books spanning a variety of categories and can read their favorites online in the embedded viewer or offline by downloading, as per their preferences. This repository contains the code for Bookaholic's frontend which is built with React.js.
+
 This is the group project repository for the course CSCI 5709 - Advanced Topics in Web Development instructed by Professor Maria Gabriella Mosquera.
 
 - _Date Created_: 27 Jan 2022
