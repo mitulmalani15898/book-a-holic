@@ -95,7 +95,8 @@ function AccountSetting({ userDetails }) {
       .then((res) => {
         if (newPasswordRef.current) newPasswordRef.current.value = "";
         if (passRef.current) passRef.current.value = "";
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error.message);
       });
 
@@ -189,14 +190,9 @@ function AccountSetting({ userDetails }) {
             title={"Are you sure?"}
             onActionClick={() => {
               // Backend Request for account deactivation (DELETE)
-              axios
-                .delete(
-                  "http://localhost:8080/api/user/delete",
-                  userDetails.email
-                )
-                .then((res) => {
-                  navigate("/");
-                });
+              axios.delete("/user/delete", userDetails.email).then((res) => {
+                navigate("/");
+              });
             }}
             buttonActionText={"Confirm"}
             desc={"Are you sure, you wish to delete the account?"}
