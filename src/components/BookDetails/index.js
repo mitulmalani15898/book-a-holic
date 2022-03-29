@@ -15,12 +15,13 @@ import AddToCart from "../../static/images/icons/AddCartIcon";
 import PreviewIcon from "../../static/images/icons/PreviewIcon";
 import { BASE_URL } from "../../utils/constants";
 import { BooksContext } from "../../Providers/BooksProvider";
-import DefaultBook from "../../static/images/DefaultBook.png";
 import BookPreview from "../BookPreview";
+import BookCoverImage from "../BookCoverImage";
 
 import "./book-details.css";
 
 const BookDetails = () => {
+  // book id from url params
   const { id } = useParams();
   const {
     cart,
@@ -98,14 +99,9 @@ const BookDetails = () => {
       <div className="books-details-wrapper">
         <div className="image-block">
           <div className="book-detail-image-wrapper">
-            <img
+            <BookCoverImage
               src={`${BASE_URL + imageUrl}`}
-              alt="book-cover"
               className="book-detail-image"
-              onError={({ currentTarget }) => {
-                currentTarget.onError = null;
-                currentTarget.src = DefaultBook;
-              }}
             />
           </div>
         </div>

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { BooksContext } from "../../Providers/BooksProvider";
 import AddToCart from "../../static/images/icons/AddCartIcon";
 import { BASE_URL } from "../../utils/constants";
-import DefaultBook from "../../static/images/DefaultBook.png";
+import BookCoverImage from "../BookCoverImage";
 
 import "./book-card.css";
 
@@ -23,14 +23,9 @@ function BookCard({ book, isIncludedInCart }) {
       <Link to={`/book/${_id}`}>
         <div className="book-image-wrapper">
           <div className="book-image-cover">
-            <img
+            <BookCoverImage
               src={`${BASE_URL + imageUrl}`}
-              alt="book-cover"
               className="book-image"
-              onError={({ currentTarget }) => {
-                currentTarget.onError = null;
-                currentTarget.src = DefaultBook;
-              }}
             />
           </div>
         </div>

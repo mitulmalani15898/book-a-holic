@@ -10,7 +10,7 @@ import Alert from "react-bootstrap/Alert";
 
 import { BooksContext } from "../../Providers/BooksProvider";
 import { BASE_URL } from "../../utils/constants";
-import DefaultBook from "../../static/images/DefaultBook.png";
+import BookCoverImage from "../BookCoverImage";
 
 const CartBooks = () => {
   const { cart, handleRemoveFromCart } = useContext(BooksContext);
@@ -31,14 +31,9 @@ const CartBooks = () => {
           cart.map((item) => (
             <div className="cart-book-wrapper" key={item._id}>
               <div className="cart-book-image-cover">
-                <img
+                <BookCoverImage
                   src={`${BASE_URL + item.imageUrl}`}
-                  alt="book-cover"
                   className="cart-book-image"
-                  onError={({ currentTarget }) => {
-                    currentTarget.onError = null;
-                    currentTarget.src = DefaultBook;
-                  }}
                 />
               </div>
               <div className="book-details-delete-wrapper">

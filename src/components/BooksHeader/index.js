@@ -15,7 +15,7 @@ function BooksHeader() {
 
   /**
    * search books api call after each second,
-   * used useCallback so that this function is initialized sigle time and reused in each render
+   * used useCallback so that this function is initialized sigle time and reused same instance in each render
    */
   const debouncedSearch = useCallback(
     debounce(

@@ -58,9 +58,10 @@ const BooksProvider = (props) => {
 
   const handleAddToCart = (book) => () => {
     if (!cookie.Token) {
-      navigate("/login");
+      navigate("/login", { replace: true });
+    } else {
+      setCart((prev) => [...prev, book]);
     }
-    setCart((prev) => [...prev, book]);
   };
 
   const handleRemoveFromCart = (book) => () => {
