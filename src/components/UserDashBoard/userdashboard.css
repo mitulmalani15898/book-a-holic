@@ -1,3 +1,74 @@
+.head{
+    background-color: lightblue;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    /* border-style: solid; */
+    margin:auto;
+    /* border-radius: 15px; */
+    
+
+}
+.container_profile_user{
+    background-color: lightblue;
+    text-align: center;
+    border-style: hidden;
+    border-radius: 17px;
+    font-family: 'Ruda', sans-serif;
+}
+.container-about-us{
+    background-color: lightblue;
+    border-radius: 15px;
+    border-style: hidden;
+    padding: 18px; 
+    text-align: center;
+}
+
+.container-about-us>p{
+    font-family: 'Slabo 27px', serif;
+    font-size: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+  
+
+}
+.container-about-us>h1{
+    font-family: 'Ruda', sans-serif;
+}
+.dashboard-header{
+    background-color: lightblue;
+    text-align: center;
+
+    font-family: 'Ruda', sans-serif;
+  }
+  .favorite-book-container{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.favorite-book-container>div{
+    background-color: lightblue;
+    width: 250px;
+    height: 250px;;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    border-style: hidden;
+    border-radius: 30px;
+}
+
+.favorite-book-container img{
+    margin-top: 27px;
+}
+
+.favorite-book-container > div:hover
+{
+transform: scale(1.1);
+
+}
 
 .text-color{
     color: #808080;

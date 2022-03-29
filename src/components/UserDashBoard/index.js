@@ -7,123 +7,71 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Axios from "axios";
 import React, { useState, useEffect } from "react";
-
+import { BASE_URL } from "../../utils/constants";
 function UserDashBoard() {
+  const [userName, setuserName] = useState();
   const [orderData, setorderData] = useState([]);
   const [orderDetails, setorderDetails] = useState([]);
   let orderProducts = [];
   let productsArray = [];
 
-  const getOrdersList=() => {
-    Axios.get('http://localhost:8080/api/userdashboard/').then((data)=>{
-           setorderDetails(data);
-           console.log(data.data.data[0].name);
+  const getuserName=() => {
+    Axios.get('http://localhost:8080/api/userdashboard/getname/624176615650470f069854f7').then((data)=>{
+           setuserName(data.data);
+           console.log(data.data);
    })
   }
-   
+  
+  const getOrdersList=() => {
+    Axios.get('http://localhost:8080/api/userdashboard/borrowedbooks/624176615650470f069854f7').then((data)=>{
+           setorderDetails(data.data);
+           console.log(orderDetails.length);
+   })
+  }
+  getuserName();    
     useEffect(() =>{
-      getOrdersList();
+      Axios.get('http://localhost:8080/api/userdashboard/borrowedbooks/624331b48088012ce154a51d').then((data)=>{
+           setorderDetails(data.data);
+           console.log(orderDetails.length);
+   })
+     
     },[])
     return (<>
-        <div className="wallpaper">
-          <div className="home-page-center-1">
-            <div className="home-page-center-1-content">
-                <img src={Gift1} height='400' weight='400'></img>
+    <div className="User-Dashboard">
+       <div id="main">   
+                <h1 className="head">User Dashboard</h1>
             </div>
-          </div>
-          <div className="home-page-center-2">
-            <div className="home-page-center-2-content">
-              <h1>Find the Gifts which you would love to present at reasonable price.</h1>
-              <br></br>
-              <h6>Gift giving is a part of our culture, no matter where you are and how long you stay. Every gift from a friend is a wish for your happiness. Happiness is not as much in having as sharing. We make  a living by what we get, but we make a life by what we give.</h6>
-              <br></br>
-              <Button variant="light" href="/birthdaygifts">Shop now</Button>
-            </div>
-          </div>
-        </div>
-        <div className='second-part'>
-          <div className='second-part-heading'>Favorite Books</div>
-          <div>
-            <div className="card-1">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={bday} />
-                <Card.Body>
-                  <Card.Title>Birthday gifts</Card.Title>
-                  <Card.Text>
-                    Looking for presenting a surprise gift to your loved ones on their birthday ? Here are few hand picked ones for you.
-                  </Card.Text>
-                  <Button variant="light" href='/birthdaygifts'>Shop now</Button>
-                </Card.Body>
-              </Card>
-              </div>
-              <div className="card-2">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={anniversary} />
-                <Card.Body>
-                  <Card.Title>Anniversary gifts</Card.Title>
-                  <Card.Text>
-                    Surprise them with beautiful anniversary gifts. Remind them how much you care with a memorable gifts.
-                  </Card.Text>
-                  <Button variant="light" href='/anniversarygifts'>Shop now</Button>
-                </Card.Body>
-              </Card>
-              </div>
-              <div className="card-3">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={travel} />
-                <Card.Body>
-                  <Card.Title>Bon Voyage gifts</Card.Title>
-                  <Card.Text>
-                    "Leave your worries behind and enjoy your trip." Wish your loved ones a safe and happy journey with our Bon Voyage gifts.
-                  </Card.Text>
-                  <Button variant="light" href='/bonvoyagegifts'>Shop now</Button>
-                </Card.Body>
-              </Card>
-              </div>
-            </div>
-        </div>
+        <br></br>
+            <section className="container_profile_user">
 
 
-        <div className='second-part'>
-          <div className='second-part-heading'>Borrowed Books</div>
-          <div>
-            <div className="card-1">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={bday} />
-                <Card.Body>
-                  <Card.Title>Birthday gifts</Card.Title>
-                  <Card.Text>
-                    Looking for presenting a surprise gift to your loved ones on their birthday ? Here are few hand picked ones for you.
-                  </Card.Text>
-                  <Button variant="light" href='/birthdaygifts'>Shop now</Button>
-                </Card.Body>
-              </Card>
-              </div>
-              <div className="card-2">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={anniversary} />
-                <Card.Body>
-                  <Card.Title>Anniversary gifts</Card.Title>
-                  <Card.Text>
-                    Surprise them with beautiful anniversary gifts. Remind them how much you care with a memorable gifts.
-                  </Card.Text>
-                  <Button variant="light" href='/anniversarygifts'>Shop now</Button>
-                </Card.Body>
-              </Card>
-              </div>
-              <div className="card-3">
-              <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={travel} />
-                <Card.Body>
-                  <Card.Title>Bon Voyage gifts</Card.Title>
-                  <Card.Text>
-                    "Leave your worries behind and enjoy your trip." Wish your loved ones a safe and happy journey with our Bon Voyage gifts.
-                  </Card.Text>
-                  <Button variant="light" href='/bonvoyagegifts'>Shop now</Button>
-                </Card.Body>
-              </Card>
-              </div>
-            </div>
+                  <h2> Hello {userName}! Welcome to the magical world of books</h2>
+
+            </section>  
+          <br></br>
+          <section id="container-about-us" className="container-about-us">
+                    <h1>About Us</h1> 
+
+                    <p>We are an internet company that brings library experience to your fingertips. We were estrablished in COVID for all the book-o-holics.
+                        who missed going to library but also do not want to spend huge amounts in buying books. So instead you borrow the books
+                        in our very affordable subscirptions. 
+                    </p>
+                
+            </section>  
+            <hr />
+                    <h1 className="dashboard-header">My Favorite Books</h1>
+            <hr />
+            
+            <section id="dashboard-header" className="favorite-book-container">
+            {orderDetails.map(order => (
+              <div>{order.title},{order.category}
+              <img src={BASE_URL + order.imageUrl} width="100" height="100" alt="harry"/></div>
+              
+            ))};
+                    
+                
+            </section>
+
         </div>
       </>
   );
