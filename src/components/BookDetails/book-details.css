@@ -1,4 +1,7 @@
-/* Author: Mitul Pravinbhai Malani (B00869519) */
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for BookDetails component
+ */
 .books-details-wrapper {
   display: flex;
   min-height: calc(100vh - 50px);

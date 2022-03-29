@@ -1,4 +1,7 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * Cart order summary component, which shows order summary with checkout option
+ */
 import { useContext } from "react";
 import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,4 +1,7 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * Navbar component of the app
+ */
 import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";

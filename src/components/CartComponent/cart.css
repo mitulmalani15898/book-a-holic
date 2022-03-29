@@ -1,4 +1,13 @@
-/* Author: Mitul Pravinbhai Malani (B00869519) */
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * CSS for cart page and components
+ */
+.cart-container {
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+}
+
 .cart-main-wrapper {
   height: 100%;
   width: 1000px;

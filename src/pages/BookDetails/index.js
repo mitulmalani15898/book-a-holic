@@ -1,6 +1,9 @@
-// Author: Mitul Pravinbhai Malani (B00869519)
-import React from "react";
+/**
+ * @author Mitul Pravinbhai Malani (B00869519)
+ * This component works as a wrapper for Books details page
+ */
 import Container from "react-bootstrap/Container";
+
 import BookDetails from "../../components/BookDetails";
 
 const BookDetailsPage = () => {
