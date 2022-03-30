@@ -1,3 +1,5 @@
+//Ninad Nitin Shukla
+//B00863694
 import "./userdashboard.css";
 
 import Axios from "axios";
@@ -17,7 +19,7 @@ function UserDashBoard() {
     nav(`/profiledetail/`);
   }
   const getuserName=() => {
-    Axios.get('http://localhost:8080/api/userdashboard/getname/624176615650470f069854f7').then((data)=>{
+    Axios.get('http://localhost:8080/api/userdashboard/getname/624331b48088012ce154a51d').then((data)=>{
            setuserName(data.data);
            console.log(data.data);
    })

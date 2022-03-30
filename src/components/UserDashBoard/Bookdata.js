@@ -1,7 +1,7 @@
+//Ninad Nitin Shukla
+//B00863694
 import React, { useEffect, useState } from "react";
 import { Document } from 'react-pdf/dist/esm/entry.webpack';
-import AllPagesPDFViewer from "./all-pages";
-import samplePDF from "./1.pdf";
 
 import { BASE_URL } from "../../utils/constants";
 const BookData = () => {
