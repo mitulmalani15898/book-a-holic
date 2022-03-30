@@ -39,7 +39,7 @@ const NavbarComponent = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="main-navbar">
             <NavLink
-              to="/"
+              to="/dashboard"
               className={({ isActive }) =>
                 isActive ? "nav-link active-nav-link" : "nav-link"
               }
@@ -92,7 +92,7 @@ const NavbarComponent = () => {
                   />
                   Profile
                 </NavLink>
-                <NavLink
+                {/* <NavLink
                   to="/contact-us"
                   className={({ isActive }) =>
                     isActive ? "nav-link active-nav-link" : "nav-link"
@@ -104,7 +104,7 @@ const NavbarComponent = () => {
                     className="logout-icon"
                   />
                   Contact Us
-                </NavLink>
+                </NavLink> */}
                 <NavLink
                   to="/cart"
                   className={({ isActive }) =>
