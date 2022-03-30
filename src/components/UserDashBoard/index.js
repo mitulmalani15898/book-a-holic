@@ -1,20 +1,21 @@
 import "./userdashboard.css";
-import Gift1 from "./gift-1.png";
-import bday from './bday.jpg';
-import anniversary from './anniversary.jpg';
-import travel from './travel.jpg';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+
 import Axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import React, { useState, useEffect } from "react";
 import { BASE_URL } from "../../utils/constants";
 function UserDashBoard() {
   const [userName, setuserName] = useState();
   const [orderData, setorderData] = useState([]);
   const [orderDetails, setorderDetails] = useState([]);
+  const [borrowedDetails, setborrowedDetails] = useState([]);
   let orderProducts = [];
   let productsArray = [];
-
+    const nav = useNavigate();
+  function xyz(){
+    nav(`/profiledetail/`);
+  }
   const getuserName=() => {
     Axios.get('http://localhost:8080/api/userdashboard/getname/624176615650470f069854f7').then((data)=>{
            setuserName(data.data);
@@ -22,19 +23,25 @@ function UserDashBoard() {
    })
   }
   
-  const getOrdersList=() => {
-    Axios.get('http://localhost:8080/api/userdashboard/borrowedbooks/624176615650470f069854f7').then((data)=>{
+  const getFavoriteList=() => {
+    Axios.get('http://localhost:8080/api/userdashboard/borrowedbooks/624331b48088012ce154a51d').then((data)=>{
            setorderDetails(data.data);
            console.log(orderDetails.length);
    })
   }
-  getuserName();    
-    useEffect(() =>{
-      Axios.get('http://localhost:8080/api/userdashboard/borrowedbooks/624331b48088012ce154a51d').then((data)=>{
-           setorderDetails(data.data);
-           console.log(orderDetails.length);
+
+  const getBorrowedList=() => {
+    Axios.get('http://localhost:8080/api/userdashboard/favoritebooks/624331b48088012ce154a51d').then((data)=>{
+      setborrowedDetails(data.data);
+           console.log(borrowedDetails.length);
    })
-     
+  }
+  getuserName();    
+
+  //const history=useHistory();
+    useEffect(() =>{
+      getFavoriteList(); 
+      getBorrowedList();
     },[])
     return (<>
     <div className="User-Dashboard">
@@ -64,13 +71,25 @@ function UserDashBoard() {
             
             <section id="dashboard-header" className="favorite-book-container">
             {orderDetails.map(order => (
-              <div>{order.title},{order.category}
-              <img src={BASE_URL + order.imageUrl} width="100" height="100" alt="harry"/></div>
+              <div><img src={BASE_URL + order.imageUrl} width="170" height="170" alt="harry" onClick={() => xyz()}/></div>
+
               
             ))};
                     
                 
             </section>
+            <br></br>
+            <h1 className="borrowedtitle">Borrowed Books</h1>
+            
+            <section id="dashboard-header" className="favorite-book-container">
+            {borrowedDetails.map(book => (
+              <div><img src={BASE_URL + book.imageUrl} width="170" height="170" alt="harry"/></div>
+              
+            ))};
+                    
+                
+            </section>
+
 
         </div>
       </>

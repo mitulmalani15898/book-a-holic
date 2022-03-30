@@ -14,6 +14,7 @@ import Forgot from "./components/UserAuthentication/Forgot";
 import GetReview from "./components/Reviews/GetReview";
 import Recovery from "./components/UserAuthentication/Recovery";
 import { BooksProvider } from "./Providers/BooksProvider";
+import BookData from "./components/UserDashBoard/Bookdata";
 
 
 import "./App.css";
@@ -28,6 +29,7 @@ export default function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<UserDashBoard />} />
+            <Route path="/profiledetail/" element={<BookData/>}/>
             <Route path="/contact-us" element={<Books />} />
             <Route path="/books" element={<Books />} />
             <Route path="/recovery/:token/:email" element={<Recovery />} />

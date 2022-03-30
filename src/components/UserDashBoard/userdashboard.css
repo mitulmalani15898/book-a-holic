@@ -96,6 +96,14 @@ transform: scale(1.1);
     width: 100%;
     padding: 20px;
   }
+  
+  .borrowedtitle{
+    background-color: lightblue;
+    text-align: center;
+
+    font-family: 'Ruda', sans-serif;
+
+  }
 
   .img-box{
       height: 15%;
