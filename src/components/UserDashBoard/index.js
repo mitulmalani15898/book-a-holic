@@ -2,7 +2,7 @@
 //B00863694
 import "./userdashboard.css";
 
-import Axios from "axios";
+import Axios from "../../axios";
 import { useNavigate } from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
 import React, { useState, useEffect } from "react";
@@ -19,21 +19,21 @@ function UserDashBoard() {
     nav(`/profiledetail/`);
   }
   const getuserName=() => {
-    Axios.get('http://localhost:8080/api/userdashboard/getname/624331b48088012ce154a51d').then((data)=>{
+    Axios.get("/userdashboard/getname/624331b48088012ce154a51d").then((data)=>{
            setuserName(data.data);
            console.log(data.data);
    })
   }
   
   const getFavoriteList=() => {
-    Axios.get('http://localhost:8080/api/userdashboard/borrowedbooks/624331b48088012ce154a51d').then((data)=>{
+    Axios.get('/userdashboard/borrowedbooks/624331b48088012ce154a51d').then((data)=>{
            setorderDetails(data.data);
            console.log(orderDetails.length);
    })
   }
 
   const getBorrowedList=() => {
-    Axios.get('http://localhost:8080/api/userdashboard/favoritebooks/624331b48088012ce154a51d').then((data)=>{
+    Axios.get('/userdashboard/favoritebooks/624331b48088012ce154a51d').then((data)=>{
       setborrowedDetails(data.data);
            console.log(borrowedDetails.length);
    })
