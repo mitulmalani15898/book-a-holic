@@ -28,9 +28,10 @@ export default function App() {
         <BooksProvider>
           <Navbar />
           <Routes>
-            <Route path="/" element={<UserDashBoard />} />
-            <Route path="/profiledetail/" element={<BookData/>}/>
-            <Route path="/contact-us" element={<Books />} />
+            <Route path="/" element={<Books />} />
+            <Route path="/dashboard" element={<UserDashBoard />} />
+            <Route path="/profiledetail/" element={<BookData />} />
+            {/* <Route path="/contact-us" element={<Books />} /> */}
             <Route path="/books" element={<Books />} />
             <Route path="/recovery/:token/:email" element={<Recovery />} />
             {cookie.Token ? (
