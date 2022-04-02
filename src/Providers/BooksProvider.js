@@ -15,7 +15,7 @@ import axios from "../axios";
 const BooksContext = createContext();
 
 const BooksProvider = (props) => {
-  const [cookie] = useCookies(["Token"]);
+  const [cookie] = useCookies(["Token", "Email"]);
   const navigate = useNavigate();
 
   const [books, setBooks] = useState({
@@ -49,10 +49,34 @@ const BooksProvider = (props) => {
         setBooks((prev) => ({ ...prev, data: res.data.data }));
       }
     } catch (error) {
-      console.log("error", error);
       setBooks((prev) => ({ ...prev, error: error.message }));
     } finally {
       setBooks((prev) => ({ ...prev, loading: false }));
+    }
+  };
+
+  const getUserCart = async () => {
+    const email = cookie.Email;
+    if (email) {
+      try {
+        const res = await axios.get("/cart", { params: { email } });
+        if (res.status === 200) {
+          setCart(res.data.books);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+  };
+
+  const updateUserCart = async (books) => {
+    const email = cookie.Email;
+    if (email) {
+      try {
+        await axios.post("/cart", { email, books });
+      } catch (error) {
+        console.log("error", error);
+      }
     }
   };
 
@@ -60,11 +84,13 @@ const BooksProvider = (props) => {
     if (!cookie.Token) {
       navigate("/login", { replace: true });
     } else {
+      updateUserCart([...cart.filter((b) => b._id !== book._id), book]);
       setCart((prev) => [...prev, book]);
     }
   };
 
   const handleRemoveFromCart = (book) => () => {
+    updateUserCart(cart.filter((b) => b._id !== book._id));
     setCart((prev) => prev.filter((b) => b._id !== book._id));
   };
 
@@ -79,6 +105,7 @@ const BooksProvider = (props) => {
         setCategories,
         cart,
         setCart,
+        getUserCart,
         handleAddToCart,
         handleRemoveFromCart,
       }}

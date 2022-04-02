@@ -2,6 +2,7 @@
  * @author Mitul Pravinbhai Malani (B00869519)
  * Navbar component of the app
  */
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -21,14 +22,19 @@ import {
 
 import Logo from "../../static/images/logo.png";
 import "./navbar.css";
+import { BooksContext } from "../../Providers/BooksProvider";
 
 const NavbarComponent = () => {
-  let [cookie, setCookie, removeCookie] = useCookies(["Token", "Email"]);
+  const { setCart } = useContext(BooksContext);
   const navigate = useNavigate();
+  let [cookie, setCookie, removeCookie] = useCookies(["Token", "Email"]);
+
   const logOut = () => {
+    setCart([]);
     removeCookie("Token");
     removeCookie("Email");
   };
+
   return (
     <Navbar expand="lg">
       <Container>
@@ -64,7 +70,7 @@ const NavbarComponent = () => {
               />
               Books
             </NavLink>
-            {cookie.Token ? (
+            {!!cookie.Token && (
               <>
                 <NavLink
                   to="/orders"
@@ -119,7 +125,7 @@ const NavbarComponent = () => {
                   Cart
                 </NavLink>{" "}
               </>
-            ) : null}
+            )}
           </Nav>
           <Nav>
             {cookie.Token ? (

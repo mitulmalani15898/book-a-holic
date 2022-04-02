@@ -4,7 +4,7 @@
  * File Purpose: Login
  */
 
-import { useState, React } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import { useCookies } from "react-cookie";
@@ -19,7 +19,7 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cookie, setCookie] = useCookies(["Token", "Email"]);
-  
+
   // Backend code to create a new user
   let handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,9 +32,9 @@ const Login = (props) => {
         .then((res) => {
           token = res.data.data.token;
           userEmail = res.data.data.email;
-          setCookie("Token", token, { path: "/" });
           setCookie("Email", userEmail, { path: "/" });
-          navigate("/");
+          setCookie("Token", token, { path: "/" });
+          navigate("/", { replace: true });
         })
         .catch((error) => {
           alert("Invalid Credentials. Please try again!");
