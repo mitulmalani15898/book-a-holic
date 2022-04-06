@@ -1,24 +1,48 @@
 
 .head{
-    background-color: lightblue;
-    font-family: 'Roboto Condensed', sans-serif;
-    text-align: center;
-    text-transform: uppercase;
-    /* border-style: solid; */
-    margin:auto;
-    /* border-radius: 15px; */
     
+    width: 100%;
+    font-size: 32px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-bottom: 3px solid #0166b2;
+    color: #0166b2;
+
+}
+.Contact{
+    
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    
+    padding: 10px;
+    text-align: center;
+    border-bottom: 3px solid #0166b2;
+    color: #0166b2
+
+}
+.dashboard-header{
+    
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    
+    padding: 10px;
+    text-align: center;
+    border-bottom: 3px solid #0166b2;
+    color: #0166b2
 
 }
 .container_profile_user{
-    background-color: lightblue;
-    text-align: center;
-    border-style: hidden;
-    border-radius: 17px;
-    font-family: 'Ruda', sans-serif;
+    
+
+    position: relative;
+    cursor: pointer;
 }
 .container-about-us{
-    background-color: lightblue;
+    
     border-radius: 15px;
     border-style: hidden;
     padding: 18px; 
@@ -36,12 +60,12 @@
 .container-about-us>h1{
     font-family: 'Ruda', sans-serif;
 }
-.dashboard-header{
-    background-color: lightblue;
+/* .dashboard-header{
+    
     text-align: center;
 
-    font-family: 'Ruda', sans-serif;
-  }
+    font-family: 'Ruda', sans-serif; */
+  
   .favorite-book-container{
 
     display: flex;
@@ -49,8 +73,12 @@
     justify-content: center;
 
 }
+.container-1{
+    text-align: center;
+    font-size: 20px;
+}
 .favorite-book-container>div{
-    background-color: lightblue;
+   
     width: 250px;
     height: 250px;;
     margin: 10px;
@@ -70,7 +98,42 @@
 transform: scale(1.1);
 
 }
-
+.book-title {
+    height: 36px;
+    font-family: IbmPlex Medium;
+    font-size: 16px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin: 12px 0 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    text-align: center;
+  }
+  
+  .book-author {
+    height: 22px;
+    font-family: IbmPlex Light;
+    font-size: 14px;
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+  }
+/* 
+  .User-Dashboard {
+    width: 100%;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 10px;
+    border-bottom: 3px solid #0166b2;
+    color: #0166b2;
+  }
+   */
 .text-color{
     color: #808080;
     background-color:  #f0f0f0 !important;

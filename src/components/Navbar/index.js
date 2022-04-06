@@ -85,6 +85,19 @@ const NavbarComponent = () => {
                   />
                   Orders
                 </NavLink>
+                {/* <NavLink
+                  to="/recentorders"
+                  className={({ isActive }) =>
+                    isActive ? "nav-link active-nav-link" : "nav-link"
+                  }
+                >
+                  <FontAwesomeIcon
+                  
+                    color="#FFF"
+                    className="logout-icon"
+                  />
+                  Recent Orders
+                </NavLink> */}
                 <NavLink
                   to="/profile"
                   className={({ isActive }) =>

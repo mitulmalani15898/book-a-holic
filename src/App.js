@@ -1,7 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 import UserDashBoard from "./components/UserDashBoard";
+
 import Books from "./pages/Books";
 import Cart from "./pages/Cart";
 import Navbar from "./components/Navbar";
@@ -14,21 +15,13 @@ import Forgot from "./components/UserAuthentication/Forgot";
 import GetReview from "./components/Reviews/GetReview";
 import Recovery from "./components/UserAuthentication/Recovery";
 import { BooksProvider } from "./Providers/BooksProvider";
-import BookData from "./components/UserDashBoard/Bookdata";
 
+import RecentOrders from "./components/RecentOrders";
 import "./App.css";
 
-const PrivateRoute = ({ children }) => {
-  const [cookie] = useCookies(["Token"]);
-  return !!cookie.Token ? children : <Navigate to="/login" replace={true} />;
-};
-
-const PublicRoute = ({ children }) => {
-  const [cookie] = useCookies(["Token"]);
-  return !!cookie.Token ? <Navigate to="/" replace={true} /> : children;
-};
-
 export default function App() {
+  let [cookie, setCookie] = useCookies(["Token", "Email"]);
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -37,80 +30,32 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Books />} />
             <Route path="/dashboard" element={<UserDashBoard />} />
-            <Route path="/profiledetail/" element={<BookData />} />
+            
+            <Route path="/contact-us" element={<Books />} />
             <Route path="/books" element={<Books />} />
-            <Route
-              path="/book/:id"
-              element={
-                <PrivateRoute>
-                  <BookDetails />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/orders"
-              element={
-                <PrivateRoute>
-                  <Orders />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/getReview"
-              element={
-                <PrivateRoute>
-                  <GetReview />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/cart"
-              element={
-                <PrivateRoute>
-                  <Cart />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <LogIn />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <PublicRoute>
-                  <SignUp />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/forgot"
-              element={
-                <PublicRoute>
-                  <Forgot />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/recovery/:token/:email"
-              element={
-                <PublicRoute>
-                  <Recovery />
-                </PublicRoute>
-              }
-            />
+            <Route path="/recovery/:token/:email" element={<Recovery />} />
+            {cookie.Token ? (
+              <>
+                <Route path="/book/:id" element={<BookDetails />} />,
+                <Route path="/recentorders" element={<RecentOrders/>}/>,
+                <Route path="/orders" element={<Orders />} />,
+                <Route path="/profile" element={<Profile />} />,
+                <Route path="/getReview" element={<GetReview />} />,
+                <Route path="/cart" element={<Cart />} />,
+              </>
+            ) : (
+              <>
+                <Route path="/books" element={<LogIn />} />,
+                <Route path="/book/:id" element={<LogIn />} />,
+                <Route path="/orders" element={<LogIn />} />,
+                <Route path="/profile" element={<LogIn />} />,
+                <Route path="/getReview" element={<LogIn />} />,
+                <Route path="/cart" element={<LogIn />} />,
+                <Route path="/login" element={<LogIn />} />,
+                <Route path="/signup" element={<SignUp />} />,
+                <Route path="/forgot" element={<Forgot />} />,
+              </>
+            )}
           </Routes>
         </BooksProvider>
       </BrowserRouter>
