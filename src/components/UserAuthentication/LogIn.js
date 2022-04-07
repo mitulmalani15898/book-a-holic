@@ -45,46 +45,52 @@ const Login = (props) => {
     }
   };
   return (
-    <div className="login-container flex-column">
-      <hr />
-      <h3>Account Login</h3>
-      <hr style={{ width: "50%", border: "1px solid black" }} />
-      <Form
-        onSubmit={handleSubmit}
-        style={{ width: "330px", textAlign: "left", marginTop: "2" }}
-      >
-        <Form.Group>
-          <Form.Label>User ID</Form.Label>
-          <Form.Control
-            type="text"
-            name="email"
-            value={email}
-            placeholder="Please enter your email address"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Please enter your password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <div className="button-container" type="submit" onClick={handleSubmit}>
-          Login
-        </div>
+    <div className="auth-wrapper">
+      <div className="auth-form-container flex-column">
+        <hr />
+        <h3>Account Login</h3>
+        <hr style={{ width: "100%", border: "1px solid black" }} />
+        <Form
+          onSubmit={handleSubmit}
+          style={{ width: "100%", textAlign: "left", marginTop: "2" }}
+        >
+          <Form.Group>
+            <Form.Label>User ID</Form.Label>
+            <Form.Control
+              type="text"
+              name="email"
+              value={email}
+              placeholder="Please enter your email address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Please enter your password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <div
+            className="button-container"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Login
+          </div>
+          <hr style={{ width: "0%" }} />
+          <p>
+            {" "}
+            Forgot your password? <Link to="/forgot">Click here</Link>{" "}
+          </p>
+          Not Registered? &nbsp;
+          <Link to="/signup">Sign Up</Link>
+        </Form>
         <hr style={{ width: "0%" }} />
-        <p>
-          {" "}
-          Forgot your password? <Link to="/forgot">Click here</Link>{" "}
-        </p>
-        Not Registered? &nbsp;
-        <Link to="/signup">Sign Up</Link>
-      </Form>
-      <hr style={{ width: "0%" }} />
+      </div>
     </div>
   );
 };

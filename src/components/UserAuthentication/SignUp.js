@@ -38,14 +38,14 @@ const SignUp = () => {
           })
           .then((res) => {
             alert("User Account Created");
-            navigate("/login")
+            navigate("/login");
           })
           .catch((error) => {
             alert("User Email already exists. Try resetting the password");
           });
       } catch (err) {
         alert("Could not sign up the user. Please try again!");
-        navigate("/signup")
+        navigate("/signup");
       }
       setDone(true);
     }
@@ -103,96 +103,111 @@ const SignUp = () => {
 
   return (
     <>
-      {done && [<Login />]}
+      {done && <Login />}
 
-      {!done && [
-        <div className="signup-container flex-column ">
-          <hr/>
-          <h3>Registration Form</h3>
-          <hr style={{ width: "20%", border: "1px solid black" }} />
-          <p> <center>Come join our community. Let's setup your account! </center></p>
-          <Form style={{ width: "330px", textAlign: "left" }}>
-            <Form.Group>
-              <Form.Label>First Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="firstName"
-                value={firstName}
-                onChange={(e) => {setField("fname", e.target.value)
-                setFirstName( e.target.value)}}
-                isInvalid={!!errors.fname}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.fname}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Last Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="lastName"
-                value={lastName}
-                onChange={(e) => {setField("lname", e.target.value)
-                setLastName( e.target.value)}}
-                isInvalid={!!errors.lname}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.lname}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                value={email}
-                onChange={(e) => {setField("email", e.target.value)
-              setEmail( e.target.value)}}
-                isInvalid={!!errors.email}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={password}
-                onChange={(e) => {setField("passW", e.target.value)
-              setPassword( e.target.value)}}
-                isInvalid={!!errors.passW}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.passW}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                onChange={(e) => setField("cPassword", e.target.value)}
-                isInvalid={!!errors.cPassword}
-              />
-              <Form.Control.Feedback type="invalid">
-                {errors.cPassword}
-              </Form.Control.Feedback>
-            </Form.Group>
-            <div
-              className="button-container-success"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Signup
-            </div>
-            <br/>
-            Already Registered? &nbsp;
-            <Link to="/login">Log In</Link>
-            <hr style={{ width: "0%" }}/>
-          </Form>
-        </div>,
-      ]}
+      {!done && (
+        <div className="auth-wrapper">
+          <div className="auth-form-container flex-column ">
+            <hr />
+            <h3>Registration Form</h3>
+            <hr style={{ width: "100%", border: "1px solid black" }} />
+            <p>
+              {" "}
+              <center>
+                Come join our community. Let's setup your account!{" "}
+              </center>
+            </p>
+            <Form style={{ width: "100%", textAlign: "left" }}>
+              <Form.Group>
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="firstName"
+                  value={firstName}
+                  onChange={(e) => {
+                    setField("fname", e.target.value);
+                    setFirstName(e.target.value);
+                  }}
+                  isInvalid={!!errors.fname}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.fname}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="lastName"
+                  value={lastName}
+                  onChange={(e) => {
+                    setField("lname", e.target.value);
+                    setLastName(e.target.value);
+                  }}
+                  isInvalid={!!errors.lname}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.lname}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => {
+                    setField("email", e.target.value);
+                    setEmail(e.target.value);
+                  }}
+                  isInvalid={!!errors.email}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => {
+                    setField("passW", e.target.value);
+                    setPassword(e.target.value);
+                  }}
+                  isInvalid={!!errors.passW}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.passW}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  onChange={(e) => setField("cPassword", e.target.value)}
+                  isInvalid={!!errors.cPassword}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.cPassword}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <div
+                className="button-container"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Signup
+              </div>
+              <br />
+              Already Registered? &nbsp;
+              <Link to="/login">Log In</Link>
+              <hr style={{ width: "0%" }} />
+            </Form>
+          </div>
+        </div>
+      )}
     </>
   );
 };
