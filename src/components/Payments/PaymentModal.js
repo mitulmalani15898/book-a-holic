@@ -18,7 +18,7 @@ import { useCookies } from "react-cookie";
  * @returns Payment Modal of the existing cart
  */
 export default function PaymentModal({ show, handleClose, totalPrice }) {
-  const { cart, setCart } = useContext(BooksContext);
+  const { cart, setCart,updateUserCart } = useContext(BooksContext);
   const [cookie] = useCookies(["Email"]);
   const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ export default function PaymentModal({ show, handleClose, totalPrice }) {
           books: cart,
         });
         setCart([]);
+        updateUserCart([]);
         navigate("/orders");
         handleClose();
       } catch (error) {
@@ -88,7 +89,7 @@ export default function PaymentModal({ show, handleClose, totalPrice }) {
       expiryYear.trim() < String(new Date().getFullYear()).substring(2)
     ) {
       errors.expiryYear =
-        "Expity year must be in format (YY) and should be past the current year";
+        "Expiry year must be in format (YY) and should be past the current year";
     }
     if (!securityCode || securityCode.trim().length !== 3) {
       errors.securityCode = "Security code must be exactly 3 digits";
@@ -194,7 +195,7 @@ export default function PaymentModal({ show, handleClose, totalPrice }) {
               <Form.Label>Expiry Month</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Expiry Month (MM)"
+                placeholder="Month (MM)"
                 value={addPayment.expiryMonth}
                 isInvalid={!!errors.expiryMonth}
                 onChange={(event) => {
@@ -217,7 +218,7 @@ export default function PaymentModal({ show, handleClose, totalPrice }) {
               <Form.Label>Expiry Year</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Expiry Year (YY)"
+                placeholder=" Year (YY)"
                 value={addPayment.expiryYear}
                 isInvalid={!!errors.expiryYear}
                 onChange={(event) => {
