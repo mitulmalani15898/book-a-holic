@@ -125,10 +125,10 @@ function Orders() {
               className="order-sort"
             >
               <Dropdown.Item onClick={(event) => setSortType("asc")}>
-                Recent
+                Older
               </Dropdown.Item>
               <Dropdown.Item onClick={(event) => setSortType("desc")}>
-                Older
+                Recent
               </Dropdown.Item>
             </DropdownButton>
           </div>

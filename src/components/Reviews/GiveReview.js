@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import { Modal, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "../../axios";
+import "./Listings.css";
 
 function GiveReview({ onClose, show, order }) {
   const [holdReview, setReview] = useState("");
@@ -39,14 +40,14 @@ function GiveReview({ onClose, show, order }) {
   };
   return (
     <>
-      <Modal show={show} onHide={onClose} animation={false}>
+      <Modal show={show} onHide={onClose} className="review-modal">
         <Modal.Header closeButton>
           <Modal.Title>Review the book!!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form style={{ textAlign: "left", marginTop: "2" }}>
             <Form.Group>
-              <Form.Label></Form.Label>
+              <Form.Label>Review</Form.Label>
               <Form.Control
                 type="text"
                 name="review"
@@ -58,7 +59,12 @@ function GiveReview({ onClose, show, order }) {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={handleSubmit} variant="primary">
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            variant="primary"
+            className="submit-review-button"
+          >
             Submit
           </Button>
         </Modal.Footer>
