@@ -33,7 +33,7 @@ export default function App() {
         <BooksProvider>
           <Navbar />
           <Routes>
-            <Route path="/" element={<UserDashBoard />} />
+            <Route path="/" element={<Books />} />
             <Route path="/home" element={<UserDashBoard />} />
             <Route path="/books" element={<Books />} />
             <Route
