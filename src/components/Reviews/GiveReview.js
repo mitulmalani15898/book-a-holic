@@ -44,7 +44,7 @@ function GiveReview({ onClose, show, order }) {
           <Modal.Title>Review the book!!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form style={{ width: "330px", textAlign: "left", marginTop: "2" }}>
+          <Form style={{ textAlign: "left", marginTop: "2" }}>
             <Form.Group>
               <Form.Label></Form.Label>
               <Form.Control

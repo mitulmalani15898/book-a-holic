@@ -17,6 +17,7 @@ import { BASE_URL } from "../../utils/constants";
 import { BooksContext } from "../../Providers/BooksProvider";
 import BookPreview from "../BookPreview";
 import BookCoverImage from "../BookCoverImage";
+import axios from "../../axios";
 
 import "./book-details.css";
 
@@ -31,6 +32,7 @@ const BookDetails = () => {
   } = useContext(BooksContext);
 
   const [book, setBook] = useState({});
+  const [reviews, setReviews] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
   const [isHover, setIsHover] = useState(false);
   const [previewHover, setPreviewHover] = useState(false);
@@ -38,9 +40,24 @@ const BookDetails = () => {
   // sets book if page refreshed explicitly
   useEffect(() => {
     if (data.length) {
-      setBook(data.find((book) => book._id === id));
+      const book = data.find((book) => book._id === id);
+      setBook(book);
+      handleGetReview(book._id);
     }
   }, [data.length]);
+
+  const handleGetReview = async (bookId) => {
+    try {
+      const res = await axios.get("/book/getReviews", {
+        params: { bookId },
+      });
+      if (res.status === 200) {
+        setReviews(res.data.data);
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   const handleShowPreview = () => {
     setShowPreview((prev) => !prev);
@@ -156,6 +173,18 @@ const BookDetails = () => {
             )}
           </div>
           <div className="book-detail-description">{bookDescription}</div>
+          <h4 className="reviews-title">Reviews</h4>
+          {!!reviews.length ? (
+            reviews.map((r, i) => (
+              <li key={i} className="book-detail-description mb-1">
+                {r.review}
+              </li>
+            ))
+          ) : (
+            <div className="book-detail-description">
+              No reviews found for this book at the moment.
+            </div>
+          )}
         </div>
       </div>
     </>

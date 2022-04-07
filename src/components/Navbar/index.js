@@ -44,7 +44,7 @@ const NavbarComponent = () => {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="main-navbar">
             <NavLink
-              to="/dashboard"
+              to="/home"
               className={({ isActive }) =>
                 isActive ? "nav-link active-nav-link" : "nav-link"
               }

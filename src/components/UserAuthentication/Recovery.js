@@ -46,34 +46,35 @@ const Recovery = (props) => {
     setPassword(e.target.value);
   };
   return (
-    <div className="forgot-container flex-column">
-      <hr />
-      <h3>Account Password Reset</h3>
-      <hr style={{ width: "20%", border: "1px solid black" }} />
-      <Form style={{ width: "330px", textAlign: "left", marginTop: "2" }}>
-        <Form.Group>
-          <Form.Label>New Password</Form.Label>
-          <Form.Control
-            type="password"
-            name="password"
-            placeholder="Enter new password"
-            value={password}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <div className="submit-container d-flex mt-3 flex-column justify-content-center">
-          <Button
-            style={{ width: "330px" }}
-            variant="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            {" "}
-            Change Password!{" "}
-          </Button>
-          <hr style={{ width: "0%" }} />
-        </div>
-      </Form>
+    <div className="auth-wrapper">
+      <div className="auth-form-container flex-column">
+        <hr />
+        <h3>Account Password Reset</h3>
+        <hr style={{ width: "100%", border: "1px solid black" }} />
+        <Form style={{ width: "100%", textAlign: "left", marginTop: "2" }}>
+          <Form.Group>
+            <Form.Label>New Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Enter new password"
+              value={password}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <div className="submit-container d-flex mt-3 flex-column justify-content-center">
+            <div
+              style={{ width: "100%" }}
+              className="button-container"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Change Password
+            </div>
+            <hr style={{ width: "0%" }} />
+          </div>
+        </Form>
+      </div>
     </div>
   );
 };

@@ -21,7 +21,6 @@ function UserDashBoard() {
   const getTrendingList = () => {
     Axios.get("/trendingpurchases/").then((data) => {
       setborrowedDetails(data.data.data);
-      console.log(data.data.data);
     });
   };
 
@@ -33,7 +32,6 @@ function UserDashBoard() {
     Axios.get(`/recentpurchases/${cookies.Email}`)
       .then((data) => {
         setbooking(data.data.data);
-        console.log(data.data.data);
       })
       .catch((error) => {
         console.log(error.message);
@@ -54,22 +52,24 @@ function UserDashBoard() {
         </div>
         <br></br>
         <section className="container_profile_user">
-          <p>
-            We are an internet company that brings library experience to your
-            fingertips. We were estrablished in COVID for all the book-a-holics.
-            who missed going to library but also do not want to spend huge
-            amounts in buying books. So instead you borrow the books in our very
-            affordable subscirptions.
-          </p>
+          <span className="brand-name">Book-a-holic </span>
+          <span>
+            is digital library built with love and a vision to empower the
+            community by connecting people to spread the ideas of innovation and
+            inspire learning. Intellectual freedom, equitable access and
+            community-driven forms the roots of our values with our commitment
+            to provide the widest range of books available to enthusiasts in all
+            accessible forms.
+          </span>
         </section>
         <br></br>
 
         {!!borrowedDetails.length && (
           <>
-            <h1 className="dashboard-header">Trending books</h1>
+            <h1 className="dashboard-header">Trending Books</h1>
             <section id="dashboard-header" className="favorite-book-container">
               {borrowedDetails.map((order) => (
-                <div>
+                <div key={order._id}>
                   <div>
                     <img
                       src={BASE_URL + order.imageUrl}
@@ -96,7 +96,7 @@ function UserDashBoard() {
             <section id="recent-order" className="favorite-book-container">
               <h1 className="dashboard-header">Recently ordered books</h1>
               {booking.map((order) => (
-                <div>
+                <div key={order._id}>
                   <img
                     src={BASE_URL + order.imageUrl}
                     width="162"
@@ -109,10 +109,10 @@ function UserDashBoard() {
           </>
         )}
 
-        <h1 className="Contact">Contact-us</h1>
+        <h1 className="Contact">Contact Us</h1>
         <section className="container-1">
-          <h5>Email: contact@book-a-holic.com</h5>
-          <h5>Contant: +1 123-556-7890</h5>
+          <h5>Email: contact@bookaholic.com</h5>
+          <h5>Contact: +1 123-456-7890</h5>
         </section>
       </div>
     </Container>
