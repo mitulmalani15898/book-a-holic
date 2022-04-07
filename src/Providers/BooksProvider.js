@@ -108,6 +108,7 @@ const BooksProvider = (props) => {
         getUserCart,
         handleAddToCart,
         handleRemoveFromCart,
+        updateUserCart
       }}
     >
       {props.children}
