@@ -15,7 +15,6 @@ import {
   faBook,
   faCartShopping,
   faHouse,
-  faMessage,
   faRightFromBracket,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -85,19 +84,6 @@ const NavbarComponent = () => {
                   />
                   Orders
                 </NavLink>
-                {/* <NavLink
-                  to="/recentorders"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active-nav-link" : "nav-link"
-                  }
-                >
-                  <FontAwesomeIcon
-                  
-                    color="#FFF"
-                    className="logout-icon"
-                  />
-                  Recent Orders
-                </NavLink> */}
                 <NavLink
                   to="/profile"
                   className={({ isActive }) =>
@@ -111,19 +97,6 @@ const NavbarComponent = () => {
                   />
                   Profile
                 </NavLink>
-                {/* <NavLink
-                  to="/contact-us"
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active-nav-link" : "nav-link"
-                  }
-                >
-                  <FontAwesomeIcon
-                    icon={faMessage}
-                    color="#FFF"
-                    className="logout-icon"
-                  />
-                  Contact Us
-                </NavLink> */}
                 <NavLink
                   to="/cart"
                   className={({ isActive }) =>
@@ -136,7 +109,7 @@ const NavbarComponent = () => {
                     className="logout-icon"
                   />
                   Cart
-                </NavLink>{" "}
+                </NavLink>
               </>
             )}
           </Nav>
