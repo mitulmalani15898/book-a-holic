@@ -34,8 +34,8 @@ const CartOrderSummary = () => {
           <div>{`$${getTotalPrice()}`}</div>
         </div>
         <div className="d-flex flex-column">
-          <Form.Control type="text" placeholder="Enter promo code" />
-          <button className="apply-promo-button">Apply</button>
+          {/* <Form.Control type="text" placeholder="Enter promo code" />
+          <button className="apply-promo-button">Apply</button> */}
           <div className="divider" />
           <div className="total-cost">
             <div>Total Price</div>
