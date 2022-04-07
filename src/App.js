@@ -11,7 +11,6 @@ import Orders from "./components/Orders";
 import LogIn from "./components/UserAuthentication/LogIn";
 import SignUp from "./components/UserAuthentication/SignUp";
 import Forgot from "./components/UserAuthentication/Forgot";
-import GetReview from "./components/Reviews/GetReview";
 import Recovery from "./components/UserAuthentication/Recovery";
 import { BooksProvider } from "./Providers/BooksProvider";
 
@@ -34,8 +33,8 @@ export default function App() {
         <BooksProvider>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Books />} />
-            <Route path="/dashboard" element={<UserDashBoard />} />
+            <Route path="/" element={<UserDashBoard />} />
+            <Route path="/home" element={<UserDashBoard />} />
             <Route path="/books" element={<Books />} />
             <Route
               path="/book/:id"
@@ -58,14 +57,6 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <Profile />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/getReview"
-              element={
-                <PrivateRoute>
-                  <GetReview />
                 </PrivateRoute>
               }
             />

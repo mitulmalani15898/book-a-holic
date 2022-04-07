@@ -15,6 +15,7 @@ import axios from "../../axios";
 
 function Orders() {
   const [cookies, setCookies] = useCookies("user");
+  const [selectedOrder, setSelectedOrder] = useState({});
   const [modalVisible, setModalVisible] = useState(false);
   const [ordersList, setOrdersList] = useState([]);
   const [filteredList, setFilteredList] = useState(ordersList);
@@ -25,7 +26,7 @@ function Orders() {
   const USER_EMAIL = cookies.Email;
 
   const toggleReviewModal = () => {
-    setModalVisible(!modalVisible);
+    setModalVisible((prev) => !prev);
   };
 
   // Backend Code to get orders from database (GET)
@@ -58,6 +59,11 @@ function Orders() {
     }
   }, [query]);
 
+  const handleWriteReviewClick = (order) => () => {
+    setSelectedOrder(order);
+    toggleReviewModal();
+  };
+
   const handleSearch = (event) => {
     let value = event.target.value.toLowerCase();
     setQuery(value);
@@ -89,73 +95,75 @@ function Orders() {
   }, [sortType]);
 
   return (
-    <div>
-      <div className="order-searchsort-div">
-        <div className="order-search-bar">
-          <input
-            type="text"
-            className="form-control search-input"
-            placeholder="Search by order id, book..."
-            onChange={(event) => handleSearch(event)}
-          />
-          <div className="search-icon-wrapper">
-            <FontAwesomeIcon
-              icon={faSearch}
-              color="#0166B2"
-              className="search-icon"
+    <>
+      <GiveReview
+        order={selectedOrder}
+        onClose={toggleReviewModal}
+        show={modalVisible}
+      />
+      <div>
+        <div className="order-searchsort-div">
+          <div className="order-search-bar">
+            <input
+              type="text"
+              className="form-control search-input"
+              placeholder="Search by order id, book..."
+              onChange={(event) => handleSearch(event)}
             />
+            <div className="search-icon-wrapper">
+              <FontAwesomeIcon
+                icon={faSearch}
+                color="#0166B2"
+                className="search-icon"
+              />
+            </div>
+          </div>
+          <div className="sort-div">
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Sort By Date"
+              className="order-sort"
+            >
+              <Dropdown.Item onClick={(event) => setSortType("asc")}>
+                Recent
+              </Dropdown.Item>
+              <Dropdown.Item onClick={(event) => setSortType("desc")}>
+                Older
+              </Dropdown.Item>
+            </DropdownButton>
           </div>
         </div>
-        <div className="sort-div">
-          <DropdownButton
-            id="dropdown-basic-button"
-            title="Sort By Date"
-            className="order-sort"
-          >
-            <Dropdown.Item onClick={(event) => setSortType("asc")}>
-              Recent
-            </Dropdown.Item>
-            <Dropdown.Item onClick={(event) => setSortType("desc")}>
-              Older
-            </Dropdown.Item>
-          </DropdownButton>
-        </div>
-      </div>
 
-      {/* Dynamic Orders Generated  */}
-      {filteredList.length === 0 && <div>No Orders Found.</div>}
-      {filteredList &&
-        filteredList.map((res) => (
-          <div className="order-container" key={res._id}>
-            <div className="order-card">
-              <p className="order-heading">Order ID:</p>
-              <p className="order-content">{res._id}</p>
-              <div className="review-button">
-                <div onClick={toggleReviewModal}>Write a Review</div>
-
-                {/* Give Review Component */}
-                <GiveReview
-                  order={res}
-                  onClose={toggleReviewModal}
-                  show={modalVisible}
-                />
+        {/* Dynamic Orders Generated  */}
+        {filteredList.length === 0 && <div>No Orders Found.</div>}
+        {filteredList &&
+          filteredList.map((res) => (
+            <div className="order-container" key={res._id}>
+              <div className="order-card">
+                <p className="order-heading">Order ID:</p>
+                <p className="order-content">{res._id}</p>
+                <div className="review-button">
+                  <div onClick={handleWriteReviewClick(res)}>
+                    Write a Review
+                  </div>
+                </div>
+              </div>
+              <div className="order-card">
+                <p className="order-heading">Book Name:</p>
+                <p className="order-content">{res.bookName}</p>
+              </div>
+              <div className="order-card">
+                <p className="order-heading">Purchase Date:</p>
+                <p className="order-content">{res.purchaseDate.slice(0, 10)}</p>
+              </div>
+              <div className="order-card">
+                <p className="order-heading">Amount:</p>
+                <p className="order-content">{res.amount}</p>
               </div>
             </div>
-            <div className="order-card">
-              <p className="order-heading">Book Name:</p>
-              <p className="order-content">{res.bookName}</p>
-            </div>
-            <div className="order-card">
-              <p className="order-heading">Purchase Date:</p>
-              <p className="order-content">{res.purchaseDate.slice(0, 10)}</p>
-            </div>
-            <div className="order-card">
-              <p className="order-heading">Amount:</p>
-              <p className="order-content">{res.amount}</p>
-            </div>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+    </>
   );
 }
 

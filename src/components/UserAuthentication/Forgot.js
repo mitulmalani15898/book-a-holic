@@ -15,15 +15,18 @@ import axios from "../../axios";
 const Forgot = (props) => {
   const navigate = useNavigate();
   let [email, setEmail] = React.useState();
-  
+
   // Backend POST call for forget password
   const handleSubmit = (e) => {
     try {
       e.preventDefault();
       axios
-        .post(`https://bookaholic-backend.herokuapp.com/api/user/forgot/${email}`, {
-          email: email,
-        })
+        .post(
+          `https://bookaholic-backend.herokuapp.com/api/user/forgot/${email}`,
+          {
+            email: email,
+          }
+        )
         .then((res) => {
           alert("Email sent!!");
         })
@@ -32,7 +35,7 @@ const Forgot = (props) => {
         });
     } catch (err) {
       alert("Request error caught.");
-      // navigate to login page.
+      navigate("/login");
     }
   };
 

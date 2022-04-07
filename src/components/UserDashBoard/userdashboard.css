@@ -8,6 +8,11 @@
   border-bottom: 3px solid #0166b2;
   color: #0166b2;
 }
+.brand-name {
+  font-size: 24px;
+  color: #0166b2;
+  font-weight: 500;
+}
 .Contact {
   width: 100%;
   font-size: 24px;
@@ -30,7 +35,7 @@
 }
 .container_profile_user {
   position: relative;
-  cursor: pointer;
+  padding: 0 10px;
 }
 .container-about-us {
   border-radius: 15px;

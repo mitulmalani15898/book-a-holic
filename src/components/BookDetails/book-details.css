@@ -92,8 +92,16 @@
 
 .book-detail-description {
   font-family: IbmPlex Medium;
-  font-size: 18px;
+  font-size: 16px;
   margin-bottom: 15px;
+}
+
+.reviews-title {
+  color: #0166b2;
+}
+
+li::marker {
+  color: #0166b2;
 }
 
 @media only screen and (max-width: 768px) {
