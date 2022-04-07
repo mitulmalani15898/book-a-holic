@@ -12,13 +12,13 @@ import axios from "..//../axios";
 import { useCookies } from "react-cookie";
 
 /**
- * 
+ *
  * @param {show, handleClose, total Price} for displaying, handling the close event and displaying
- * total amount at the time of checkout. 
+ * total amount at the time of checkout.
  * @returns Payment Modal of the existing cart
  */
 export default function PaymentModal({ show, handleClose, totalPrice }) {
-  const { cart, setCart,updateUserCart } = useContext(BooksContext);
+  const { cart, setCart, updateUserCart } = useContext(BooksContext);
   const [cookie] = useCookies(["Email"]);
   const navigate = useNavigate();
 
@@ -106,14 +106,14 @@ export default function PaymentModal({ show, handleClose, totalPrice }) {
       onHide={handleClose}
       aria-labelledby="contained-modal-title-vcenter"
       centered
+      className="payment-modal"
     >
       <Modal.Header closeButton>
-        <Modal.Title>Pay Now</Modal.Title>
+        <Modal.Title className="payment-title">Pay Now</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
         <Row>
-          {" "}
           <Col>
             <Form.Group className="addpayment-element">
               <Form.Label>Name on Card</Form.Label>
@@ -235,10 +235,10 @@ export default function PaymentModal({ show, handleClose, totalPrice }) {
           </Col>
           <Col>
             <Form.Group className="addpayment-element">
-              <Form.Label>Enter Security Code</Form.Label>
+              <Form.Label>Security Code</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Enter Security Code"
+                placeholder="CVV"
                 value={addPayment.securityCode}
                 isInvalid={!!errors.securityCode}
                 onChange={(event) => {

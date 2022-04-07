@@ -8,6 +8,7 @@ import "./userdashboard.css";
 
 import Axios from "../../axios";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { useCookies } from "react-cookie";
 import { BASE_URL } from "../../utils/constants";
@@ -63,21 +64,22 @@ function UserDashBoard() {
           </span>
         </section>
         <br></br>
-
         {!!borrowedDetails.length && (
           <>
             <h1 className="dashboard-header">Trending Books</h1>
             <section id="dashboard-header" className="favorite-book-container">
               {borrowedDetails.map((order) => (
                 <div key={order._id}>
-                  <div>
-                    <img
-                      src={BASE_URL + order.imageUrl}
-                      width="162"
-                      height="250"
-                      alt="harry"
-                    />
-                  </div>
+                  <Link to={`/book/${order._id}`}>
+                    <div>
+                      <img
+                        src={BASE_URL + order.imageUrl}
+                        width="162"
+                        height="250"
+                        alt="harry"
+                      />
+                    </div>
+                  </Link>
                   <div className="book-title">
                     <p>{order.title}</p>
                   </div>
@@ -89,7 +91,6 @@ function UserDashBoard() {
             </section>
           </>
         )}
-
         {cookies.Token != null && !!booking.length && (
           <>
             <br></br>
@@ -97,18 +98,19 @@ function UserDashBoard() {
               <h1 className="dashboard-header">Recently ordered books</h1>
               {booking.map((order) => (
                 <div key={order._id}>
-                  <img
-                    src={BASE_URL + order.imageUrl}
-                    width="162"
-                    height="250"
-                    alt="harry"
-                  />
+                  <Link to={`/book/${order._id}`}>
+                    <img
+                      src={BASE_URL + order.imageUrl}
+                      width="162"
+                      height="250"
+                      alt="harry"
+                    />
+                  </Link>
                 </div>
               ))}
             </section>
           </>
         )}
-
         <h1 className="Contact">Contact Us</h1>
         <section className="container-1">
           <h5>Email: contact@bookaholic.com</h5>
