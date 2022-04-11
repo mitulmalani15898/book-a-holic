@@ -26,6 +26,7 @@ const BookDetails = () => {
   const { id } = useParams();
   const {
     cart,
+    orders,
     handleAddToCart,
     handleRemoveFromCart,
     books: { data, loading } = {},
@@ -76,6 +77,7 @@ const BookDetails = () => {
   } = book;
 
   const isIncludedInCart = cart.find((b) => b._id === book._id);
+  const isPurchased = orders.find((order) => order.bookId === book._id);
 
   if (loading) {
     return (
@@ -101,7 +103,7 @@ const BookDetails = () => {
         show={showPreview}
         handleClose={handleShowPreview}
         bookPdf={bookUrl}
-        preview={true}
+        preview={!isPurchased}
       />
       <div className="back-to-books-link">
         <Link to="/books" className="books-link">
@@ -148,29 +150,30 @@ const BookDetails = () => {
                 className="add-cart-icon"
                 color={previewHover ? "#0166B2" : "#FFF"}
               />
-              Preview
+              {isPurchased ? "View Book" : "Preview"}
             </button>
-            {isIncludedInCart ? (
-              <button
-                className="add-cart-button cart-button remove-cart-button"
-                onClick={handleRemoveFromCart(book)}
-              >
-                Remove
-              </button>
-            ) : (
-              <button
-                className="add-cart-button cart-button"
-                onClick={handleAddToCart(book)}
-                onMouseEnter={() => setIsHover(true)}
-                onMouseLeave={() => setIsHover(false)}
-              >
-                <AddToCart
-                  className="add-cart-icon"
-                  color={isHover ? "#0166B2" : "#FFF"}
-                />
-                Add To Cart
-              </button>
-            )}
+            {!isPurchased &&
+              (isIncludedInCart ? (
+                <button
+                  className="add-cart-button cart-button remove-cart-button"
+                  onClick={handleRemoveFromCart(book)}
+                >
+                  Remove
+                </button>
+              ) : (
+                <button
+                  className="add-cart-button cart-button"
+                  onClick={handleAddToCart(book)}
+                  onMouseEnter={() => setIsHover(true)}
+                  onMouseLeave={() => setIsHover(false)}
+                >
+                  <AddToCart
+                    className="add-cart-icon"
+                    color={isHover ? "#0166B2" : "#FFF"}
+                  />
+                  Add To Cart
+                </button>
+              ))}
           </div>
           <div className="book-detail-description">{bookDescription}</div>
           <h4 className="reviews-title">Reviews</h4>

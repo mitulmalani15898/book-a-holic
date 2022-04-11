@@ -11,10 +11,11 @@ import BooksFilter from "../../components/BooksFilter";
 import { BooksContext } from "../../Providers/BooksProvider";
 
 const Books = () => {
-  const { getUserCart } = useContext(BooksContext);
+  const { getUserCart, getUserOrder } = useContext(BooksContext);
 
   useEffect(() => {
     getUserCart();
+    getUserOrder();
   }, []);
 
   return (
