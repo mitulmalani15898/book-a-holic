@@ -7,7 +7,9 @@ This is the group project repository for the course CSCI 5709 - Advanced Topics 
 - _Date Created_: 27 Jan 2022
 - _Last Modification Date_: 29 MAR 2022
 - _Deployed Application URL_: <https://bookaholic-app.herokuapp.com>
-- _Git Repository URL_: <https://git.cs.dal.ca/ygulati/group3_csci5709>
+- _Git Repository Application URL_: <https://git.cs.dal.ca/ygulati/group3_csci5709>
+- _Git Repository Backend URL_: <https://git.cs.dal.ca/pthakkar/group3_csci5709_backend>
+- _Git Repository Admin Panel URL_: <https://git.cs.dal.ca/pthakkar/group3_csci5709_admin>
 
 ## Authors
 
