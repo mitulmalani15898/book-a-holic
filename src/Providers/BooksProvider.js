@@ -26,9 +26,12 @@ const BooksProvider = (props) => {
   const [search, setSearch] = useState("");
   const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     getBooks();
+    getUserCart();
+    getUserOrder();
   }, []);
 
   // get books with searching and filtering books by categories
@@ -62,6 +65,20 @@ const BooksProvider = (props) => {
         const res = await axios.get("/cart", { params: { email } });
         if (res.status === 200) {
           setCart(res.data.books);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    }
+  };
+
+  const getUserOrder = async () => {
+    const email = cookie.Email;
+    if (email) {
+      try {
+        const res = await axios.get("/orders/" + email);
+        if (res.status === 200 && res.data.success) {
+          setOrders(res.data.data);
         }
       } catch (error) {
         console.log("error", error);
@@ -105,10 +122,13 @@ const BooksProvider = (props) => {
         setCategories,
         cart,
         setCart,
-        getUserCart,
         handleAddToCart,
         handleRemoveFromCart,
-        updateUserCart
+        updateUserCart,
+        orders,
+        setOrders,
+        getUserCart,
+        getUserOrder,
       }}
     >
       {props.children}

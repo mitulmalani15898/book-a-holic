@@ -12,7 +12,7 @@ import BookCoverImage from "../BookCoverImage";
 
 import "./book-card.css";
 
-function BookCard({ book, isIncludedInCart }) {
+function BookCard({ book, isIncludedInCart, isPurchased }) {
   const [isHover, setIsHover] = useState(false);
   const { handleAddToCart, handleRemoveFromCart } = useContext(BooksContext);
 
@@ -40,8 +40,14 @@ function BookCard({ book, isIncludedInCart }) {
           <span className="book-price">{`$${actualPrice}`}</span>
         </div>
       )}
-
-      {isIncludedInCart ? (
+      {isPurchased ? (
+        <button
+          className="add-cart-button"
+          onClick={handleRemoveFromCart(book)}
+        >
+          View Book
+        </button>
+      ) : isIncludedInCart ? (
         <button
           className="add-cart-button remove-cart-button"
           onClick={handleRemoveFromCart(book)}

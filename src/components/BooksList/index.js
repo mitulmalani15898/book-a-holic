@@ -12,7 +12,7 @@ import BookCard from "../BookCard";
 import "./books-list.css";
 
 function BooksList() {
-  const { books, cart } = useContext(BooksContext);
+  const { books, cart, orders } = useContext(BooksContext);
 
   const { loading, data: booksData, error } = books;
 
@@ -24,9 +24,12 @@ function BooksList() {
     );
   }
 
+  if (error) {
+    return <Alert variant="danger">{error}</Alert>;
+  }
+
   return (
     <div className="books-wrapper">
-      {error && <Alert variant="danger">{error}</Alert>}
       {!booksData.length ? (
         <Alert variant="info" align="center">
           There are no books available based on given search or filter value at
@@ -39,6 +42,7 @@ function BooksList() {
               key={book._id}
               book={book}
               isIncludedInCart={cart.find((b) => b._id === book._id)}
+              isPurchased={orders.find((order) => order.bookId === book._id)}
             />
           ))}
         </div>

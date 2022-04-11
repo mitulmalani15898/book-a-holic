@@ -24,12 +24,13 @@ import "./navbar.css";
 import { BooksContext } from "../../Providers/BooksProvider";
 
 const NavbarComponent = () => {
-  const { setCart } = useContext(BooksContext);
+  const { setCart, setOrders } = useContext(BooksContext);
   const navigate = useNavigate();
   let [cookie, setCookie, removeCookie] = useCookies(["Token", "Email"]);
 
   const logOut = () => {
     setCart([]);
+    setOrders([]);
     removeCookie("Token");
     removeCookie("Email");
   };
